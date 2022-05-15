@@ -13,10 +13,13 @@ If you need help with anything or you want to report a feature that is broken/re
 ## Features/Advantages
 
 - Free & Open Source
+- Working
 - Easy Download & Setup
 - Customizable Speed Slider
 - Runs Like A Desktop App
 - Has A God Mode Option
+
+Can reach ~33,000 WPM at ~100% Accuracy.
 
 ## Screenshots
 
