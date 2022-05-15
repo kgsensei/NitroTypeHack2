@@ -4,7 +4,7 @@
 
 ## How to Use
 
-Just click this [link](https://github.com/kgsensei/NitroTypeHack2/releases/tag/1.0), click on the button that says `nitroTypeInstaller.exe` and go though the software installer. That's it, really, its that easy.
+Just click this [link](https://github.com/kgsensei/NitroTypeHack2/releases), click on the button that says `nitroTypeInstaller.exe` and go though the software installer. That's it, really, its that easy.
 
 ## Help/Support
 
