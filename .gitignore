@@ -1,4 +1,4 @@
-.vs/
-Output/
-NTH2/bin/
-NTH2/obj/
+.vs
+Output/*
+NTH2/bin/*
+NTH2/obj/*
