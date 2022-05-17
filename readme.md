@@ -4,7 +4,7 @@
 
 ## How to Use
 
-Just click this [link](https://github.com/kgsensei/NitroTypeHack2/releases/tag/1.0), click on the button that says `nitroTypeInstaller.exe` and go though the software installer. That's it, really, its that easy.
+Just click this [link](https://github.com/kgsensei/NitroTypeHack2/releases), click on the button that says `nitroTypeInstaller.exe` and go though the software installer. That's it, really, its that easy.
 
 ## Help/Support
 
@@ -13,10 +13,13 @@ If you need help with anything or you want to report a feature that is broken/re
 ## Features/Advantages
 
 - Free & Open Source
+- Working
 - Easy Download & Setup
 - Customizable Speed Slider
 - Runs Like A Desktop App
 - Has A God Mode Option
+
+Can reach ~33,000 WPM at ~100% Accuracy.
 
 ## Screenshots
 
