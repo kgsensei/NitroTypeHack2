@@ -7,26 +7,30 @@
         xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Class="NitroType2.MainWindow"
         mc:Ignorable="d"
         Title="NitroType Auto Typing Program v2 - kgsensei" Height="645.379" Width="1635.915"
-        WindowState="Maximized" Background="DarkGray" MouseDown="Window_MouseDown">
+        WindowState="Maximized" Background="DarkGray" MouseDown="Window_MouseDown" AllowsTransparency="False">
     <Grid>
-        <Wpf:WebView2 HorizontalAlignment="Left" Height="614" VerticalAlignment="Top" Width="1442"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="85*"/>
+            <ColumnDefinition Width="15*"/>
+        </Grid.ColumnDefinitions>
+        <Wpf:WebView2 Grid.Column="0" HorizontalAlignment="Stretch" Height="614" VerticalAlignment="Top"
                       Source="https://nitrotype.com" Margin="0,0,0,0" Name="webview2" WebMessageReceived="Webview2_WebMessageReceived"/>
-        <Button Content="Start Cheat" HorizontalAlignment="Left" Margin="1447,10,0,0" VerticalAlignment="Top"
-                Width="171" Height="27" FontSize="16" FontFamily="Arial" Click="Button_Click" IsEnabled="True" Name="startCheatBtn"/>
-        <Slider HorizontalAlignment="Left" Margin="1447,42,0,0" VerticalAlignment="Top" Width="171" Value="100"
+        <Button Grid.Column="1" Content="Start Cheat" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
+                Width="200" Height="27" FontSize="16" FontFamily="Arial" Click="Button_Click" IsEnabled="True" Name="startCheatBtn"/>
+        <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="200" Value="100"
                 Maximum="250" Minimum="35" ValueChanged="Slider_ValueChanged" IsEnabled="True" Name="cheatTypeSpeedSlider"/>
-        <Label Content="[Cheat Typing Speed]" HorizontalAlignment="Left" Margin="1447,60,0,0" VerticalAlignment="Top"
-               Height="34" Width="171" FontSize="14"/>
-        <TextBlock HorizontalAlignment="Left" Margin="1447,233,0,0" TextWrapping="Wrap"
-                   VerticalAlignment="Top" Height="255" Width="171" Name="informationalTextBlock">
+        <Label Grid.Column="1" Content="[Cheat Typing Speed]" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"
+               Height="34" Width="200" FontSize="14"/>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,233,0,0" TextWrapping="Wrap"
+                   VerticalAlignment="Top" Height="255" Width="200" Name="informationalTextBlock">
             This cheat takes control of your keyboard. Do NOT change tabs while in a NitroType race, it can break other programs.<LineBreak/><LineBreak/>
             Copyright © kgsensei 2022.<LineBreak/><LineBreak/>
             DISCLAIMER: I (kgsensei) will not take responsibility for any actions made with this tool or any consequences
             users face for the use of this tool.
         </TextBlock>
-        <Label Content="Information to Know:" HorizontalAlignment="Left" Margin="1447,199,0,0" VerticalAlignment="Top"
-            Height="34" Width="171" FontSize="14"/>
-        <CheckBox Content="God Mode" HorizontalAlignment="Left" Margin="1447,126,0,0" VerticalAlignment="Top"
-                  Height="32" Width="171" FontSize="14" Checked="CheckBox_Checked"/>
+        <Label Grid.Column="1" Content="Information to Know:" HorizontalAlignment="Left" Margin="10,199,0,0" VerticalAlignment="Top"
+            Height="34" Width="200" FontSize="14"/>
+        <CheckBox Grid.Column="1" Content="God Mode" HorizontalAlignment="Left" Margin="10,126,0,0" VerticalAlignment="Top"
+                  Height="32" Width="200" FontSize="14" Checked="CheckBox_Checked"/>
     </Grid>
 </Window>
