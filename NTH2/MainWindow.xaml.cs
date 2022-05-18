@@ -34,16 +34,25 @@ namespace NitroType2
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            if (!thingsorwhatever.godMode)
+            if (!thingsorwhatever.godMode && !App.isCheatRunning)
             {
-                thingsorwhatever.typingSpeed = Convert.ToInt32(e.NewValue);
+                int change = Convert.ToInt32(e.NewValue);
+                int total = Convert.ToInt32(cheatTypeSpeedSlider.Maximum + cheatTypeSpeedSlider.Minimum);
+                thingsorwhatever.typingSpeed = total - change;
             }
             webview2.Focus();
         }
 
         async private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var html = await webview2.ExecuteScriptAsync("z=document.getElementsByClassName('dash-letter');m='';for(let i=0;i<z.length;i++){m=m+z[i].innerText};window.chrome.webview.postMessage(''+m);");
+            if (webview2.Source.ToString().IndexOf("nitrotype.com/race") != -1)
+            {
+                await webview2.ExecuteScriptAsync("if(document.getElementsByClassName('raceChat').length?false:true){z=document.getElementsByClassName('dash-letter');m='';for(let i=0;i<z.length;i++){m=m+z[i].innerText};window.chrome.webview.postMessage(''+m);}else{window.chrome.webview.postMessage('GAME_NOT_STARTED_ERROR');}");
+            }
+            else
+            {
+                MessageBox.Show("Enter a Race to Use Cheat.", "NitroType AutoTyper", MessageBoxButton.OK);
+            }
             webview2.Focus();
         }
 
@@ -52,7 +61,15 @@ namespace NitroType2
             webview2.Focus();
             if (!App.isCheatRunning)
             {
-                App.simulateTypingText(e.TryGetWebMessageAsString(), thingsorwhatever.typingSpeed);
+                string browserData = e.TryGetWebMessageAsString();
+                if (browserData == "GAME_NOT_STARTED_ERROR")
+                {
+                    MessageBox.Show("Game Hasn't Started Yet.", "NitroType AutoTyper", MessageBoxButton.OK);
+                }
+                else
+                {
+                    App.simulateTypingText(browserData, thingsorwhatever.typingSpeed);
+                }
             }
         }
 
@@ -68,15 +85,18 @@ namespace NitroType2
         {
             if (!App.isCheatRunning)
             {
-                if (thingsorwhatever.godMode)
-                {
-                    thingsorwhatever.typingSpeed = Convert.ToInt32(cheatTypeSpeedSlider.Value);
-                }
-                else
-                {
-                    thingsorwhatever.typingSpeed = 0;
-                }
-                thingsorwhatever.godMode = !thingsorwhatever.godMode;
+                thingsorwhatever.typingSpeed = 0;
+                thingsorwhatever.godMode = true;
+            }
+            webview2.Focus();
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (!App.isCheatRunning)
+            {
+                thingsorwhatever.typingSpeed = Convert.ToInt32(cheatTypeSpeedSlider.Value);
+                thingsorwhatever.godMode = false;
             }
             webview2.Focus();
         }

@@ -1,4 +1,6 @@
 .vs
-Output/*
+Output
 NTH2/bin/*
 NTH2/obj/*
+packages/*
+*.iss
