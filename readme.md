@@ -1,4 +1,4 @@
-# NitroType Auto Typer v2
+# NitroType Hack \[Working 2022\]
 
 ### By kgsensei
 
