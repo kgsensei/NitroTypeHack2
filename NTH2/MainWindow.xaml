@@ -1,13 +1,14 @@
-﻿<Window
+﻿<mah:MetroWindow
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:local="clr-namespace:NitroType2"
         xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Class="NitroType2.MainWindow"
         mc:Ignorable="d"
-        Title="NitroType AutoTyper v1.1 [kgsensei]" Height="645.379" Width="1635.915"
-        WindowState="Maximized" Background="DarkGray" MouseDown="Window_MouseDown" AllowsTransparency="False"
+        Title="NitroType AutoTyper v1.2 [kgsensei]"
+        WindowState="Maximized" MouseDown="Window_MouseDown" AllowsTransparency="False"
         MinWidth="700" MinHeight="450" Icon="favicon.ico">
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,23 +16,24 @@
             <ColumnDefinition Width="15*" MinWidth="200"/>
         </Grid.ColumnDefinitions>
         <Wpf:WebView2 Grid.Column="0" Name="webview2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                      Source="https://nitrotype.com" Margin="0,0,0,0" WebMessageReceived="Webview2_WebMessageReceived"/>
+                Source="https://nitrotype.com" Margin="0,0,0,0" WebMessageReceived="Webview2_WebMessageReceived"/>
         <Button Grid.Column="1" Content="Start Cheat" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
-                Width="200" Height="27" FontSize="16" FontFamily="Arial" Click="Button_Click" IsEnabled="True" Name="startCheatBtn"/>
-        <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,42,0,0" VerticalAlignment="Top" Width="200" Value="100"
-                Maximum="250" Minimum="35" ValueChanged="Slider_ValueChanged" IsEnabled="True" Name="cheatTypeSpeedSlider"/>
-        <Label Grid.Column="1" Content="[Cheat Typing Speed]" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"
-               Height="34" Width="200" FontSize="14"/>
+                Width="200" Height="37" FontSize="16" Click="Button_Click" Name="startCheatBtn"/>
+        <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="200" Value="100"
+                Maximum="250" Minimum="35" ValueChanged="Slider_ValueChanged" Name="cheatTypeSpeedSlider"/>
+        <Label Grid.Column="1" Content="[Cheat Typing Speed]" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"
+                Height="34" Width="200" FontSize="15"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,276,0,0" TextWrapping="Wrap"
-                   VerticalAlignment="Top" Height="254" Width="200" Name="informationalTextBlock">
-            This cheat takes control of your keyboard. Do NOT change tabs while in a NitroType race, it can break other programs.<LineBreak/><LineBreak/>
+                VerticalAlignment="Top" Height="254" Width="200" Name="informationalTextBlock">
+            This cheat takes control of your keyboard. Do NOT change tabs while in a NitroType race, it can break other programs.
+            <LineBreak/><LineBreak/>
             Copyright © kgsensei 2022.<LineBreak/><LineBreak/>
             DISCLAIMER: I (kgsensei) will not take responsibility for any actions made with this tool or any consequences
             users face for the use of this tool.
         </TextBlock>
-        <Label Grid.Column="1" Content="Information to Know:" HorizontalAlignment="Left" Margin="10,242,0,0" VerticalAlignment="Top"
-            Height="34" Width="200" FontSize="14"/>
+        <Label Grid.Column="1" Content="Information to Know:" HorizontalAlignment="Left" Margin="0,242,0,0"
+                VerticalAlignment="Top" Height="34" Width="200" FontSize="20"/>
         <CheckBox Grid.Column="1" Content="God Mode" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top"
-                  Height="32" Width="200" FontSize="14" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
     </Grid>
-</Window>
+</mah:MetroWindow>
