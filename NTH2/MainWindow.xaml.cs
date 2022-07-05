@@ -19,6 +19,7 @@ namespace NitroType2
     class thingsorwhatever
     {
         public static int typingSpeed { get; set; } = 5;
+        public static int accuracyLvl { get; set; } = 100;
         public static bool godMode { get; set; } = false;
     }
 
@@ -41,7 +42,6 @@ namespace NitroType2
                 int total = Convert.ToInt32(cheatTypeSpeedSlider.Maximum + cheatTypeSpeedSlider.Minimum);
                 thingsorwhatever.typingSpeed = total - change;
             }
-            webview2.Focus();
         }
 
         async private void Button_Click(object sender, RoutedEventArgs e)
@@ -69,7 +69,7 @@ namespace NitroType2
                 }
                 else
                 {
-                    App.simulateTypingText(browserData, thingsorwhatever.typingSpeed);
+                    App.simulateTypingText(browserData, thingsorwhatever.typingSpeed, thingsorwhatever.accuracyLvl);
                 }
             }
         }
@@ -87,19 +87,29 @@ namespace NitroType2
             if (!App.isCheatRunning)
             {
                 thingsorwhatever.typingSpeed = 0;
+                thingsorwhatever.accuracyLvl = 100;
                 thingsorwhatever.godMode = true;
             }
-            webview2.Focus();
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             if (!App.isCheatRunning)
             {
-                thingsorwhatever.typingSpeed = Convert.ToInt32(cheatTypeSpeedSlider.Value);
+                int change = Convert.ToInt32(cheatTypeSpeedSlider.Value);
+                int total = Convert.ToInt32(cheatTypeSpeedSlider.Maximum + cheatTypeSpeedSlider.Minimum);
+                thingsorwhatever.typingSpeed = total - change;
+                thingsorwhatever.accuracyLvl = Convert.ToInt32(cheatTypeAccSlider.Value);
                 thingsorwhatever.godMode = false;
             }
-            webview2.Focus();
+        }
+
+        private void cheatTypeAccSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            if (!App.isCheatRunning && !thingsorwhatever.godMode)
+            {
+                thingsorwhatever.accuracyLvl = Convert.ToInt32(e.NewValue);
+            }
         }
     }
 }

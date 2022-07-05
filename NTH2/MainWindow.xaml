@@ -10,7 +10,7 @@
         Title="NitroType AutoTyper v1.2 [kgsensei]"
         WindowState="Maximized" MouseDown="Window_MouseDown" AllowsTransparency="False"
         MinWidth="700" MinHeight="450" Icon="favicon.ico">
-    <Grid>
+    <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="85*" MinWidth="500"/>
             <ColumnDefinition Width="15*" MinWidth="200"/>
@@ -33,7 +33,11 @@
         </TextBlock>
         <Label Grid.Column="1" Content="Information to Know:" HorizontalAlignment="Left" Margin="0,242,0,0"
                 VerticalAlignment="Top" Height="34" Width="200" FontSize="20"/>
-        <CheckBox Grid.Column="1" Content="God Mode" HorizontalAlignment="Left" Margin="10,116,0,0" VerticalAlignment="Top"
+        <CheckBox Grid.Column="1" Content="God Mode" HorizontalAlignment="Left" Margin="10,197,0,0" VerticalAlignment="Top"
                 Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        <Slider Visibility="Hidden" Grid.Column="1" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Width="200" Value="100"
+            Maximum="100" Minimum="0" ValueChanged="cheatTypeAccSlider_ValueChanged" x:Name="cheatTypeAccSlider"/>
+        <Label Visibility="Hidden" Grid.Column="1" Content="[Cheat Typing Accuracy]" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top"
+            Height="34" Width="200" FontSize="15"/>
     </Grid>
 </mah:MetroWindow>
