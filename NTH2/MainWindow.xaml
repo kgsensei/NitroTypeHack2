@@ -7,8 +7,8 @@
         xmlns:local="clr-namespace:NitroType2"
         xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Class="NitroType2.MainWindow"
         mc:Ignorable="d"
-        Title="NitroType AutoTyper v1.2 [kgsensei]"
-        WindowState="Maximized" MouseDown="Window_MouseDown" AllowsTransparency="False"
+        Title="NitroType AutoTyper v2.0 [kgsensei]"
+        WindowState="Maximized" AllowsTransparency="False"
         MinWidth="700" MinHeight="450" Icon="favicon.ico">
     <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
@@ -20,11 +20,11 @@
         <Button Grid.Column="1" Content="Start Cheat" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
                 Width="200" Height="37" FontSize="16" Click="Button_Click" Name="startCheatBtn"/>
         <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="200" Value="100"
-                Maximum="250" Minimum="35" ValueChanged="Slider_ValueChanged" Name="cheatTypeSpeedSlider"/>
-        <Label Grid.Column="1" Content="[Cheat Typing Speed]" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"
+                Maximum="250" Minimum="35" ValueChanged="Slider_ValueChanged" Name="cheatTypeSpeedSlider" Panel.ZIndex="99"/>
+        <Label Grid.Column="1" Content="[Cheat Typing Speed]" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"
                 Height="34" Width="200" FontSize="15"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,276,0,0" TextWrapping="Wrap"
-                VerticalAlignment="Top" Height="254" Width="200" Name="informationalTextBlock">
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,309,0,0" TextWrapping="Wrap"
+                VerticalAlignment="Top" Height="221" Width="200" Name="informationalTextBlock">
             This cheat takes control of your keyboard. Do NOT change tabs while in a NitroType race, it can break other programs.
             <LineBreak/><LineBreak/>
             Copyright © kgsensei 2022.<LineBreak/><LineBreak/>
@@ -33,11 +33,13 @@
         </TextBlock>
         <Label Grid.Column="1" Content="Information to Know:" HorizontalAlignment="Left" Margin="0,242,0,0"
                 VerticalAlignment="Top" Height="34" Width="200" FontSize="20"/>
-        <CheckBox Grid.Column="1" Content="God Mode" HorizontalAlignment="Left" Margin="10,197,0,0" VerticalAlignment="Top"
+        <CheckBox Grid.Column="1" Content="God Mode" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top"
                 Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
-        <Slider Visibility="Hidden" Grid.Column="1" HorizontalAlignment="Left" Margin="10,109,0,0" VerticalAlignment="Top" Width="200" Value="100"
-            Maximum="100" Minimum="0" ValueChanged="cheatTypeAccSlider_ValueChanged" x:Name="cheatTypeAccSlider"/>
-        <Label Visibility="Hidden" Grid.Column="1" Content="[Cheat Typing Accuracy]" HorizontalAlignment="Left" Margin="10,133,0,0" VerticalAlignment="Top"
+        <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" Width="200" Value="100"
+            Maximum="100" Minimum="0" ValueChanged="cheatTypeAccSlider_ValueChanged" x:Name="cheatTypeAccSlider" IsEnabled="False" Panel.ZIndex="99"/>
+        <Label Grid.Column="1" Content="[Cheat Typing Accuracy]" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"
             Height="34" Width="200" FontSize="15"/>
+        <CheckBox Grid.Column="1" Content="Automatic Start" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top"
+            Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_1" Unchecked="CheckBox_Unchecked_1"/>
     </Grid>
 </mah:MetroWindow>

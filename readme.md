@@ -4,31 +4,36 @@
 
 ## How to Use
 
-Just click this [link](https://github.com/kgsensei/NitroTypeHack2/releases), click on the button that says `nitroTypeInstaller.exe` and go though the software installer. That's it, really, its that easy.
+1. Click this [link](https://github.com/kgsensei/NitroTypeHack2/releases).
+2. Click on the button that says `nitroTypeInstaller.exe`.
+3. Click run the installer you downloaded.
+4. Open up the cheat application.
+5. Enjoy!
 
 ## Help/Support
 
-If you need help with anything or you want to report a feature that is broken/request a new feature you can join my help discord server [here](https://discord.gg/U5A3QWXZKZ). You can also create a new GitHub issue [here](https://github.com/kgsensei/NitroTypeHack2/issues).
+If you need help with anything or you want to report a feature that is broken/request a new feature...  
+You can join my help discord server [here](https://discord.gg/U5A3QWXZKZ).  
+You can also create a new GitHub issue [here](https://github.com/kgsensei/NitroTypeHack2/issues).
 
 ## Features/Advantages
 
+- Currently Working
 - Free & Open Source
-- Working
-- Easy Download & Setup
-- Customizable Speed Slider
-- Runs Like A Desktop App
-- Has A God Mode Option
+- Easy to Setup & Run
+- Runs Like a Desktop App
+- Built in Ad Blocker
 
 Can reach ~33,000 WPM at ~100% Accuracy.
 
 ## Screenshots
 
 ![Interface Preview](/screenshots/1.png)
-Preview of the Interface
+Preview of Cheat Interface
 
 
 ![God Mode Preview](/screenshots/2.png)
-An Example of God Mode (You Will be Banned)
+Preview of Cheat Capabilities
 
 ## Legal
 
