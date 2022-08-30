@@ -1,0 +1,119 @@
+:root {
+	--iconSize: 50px
+}
+
+body {
+	background-color: #2e3040;
+	padding: 0px;
+	margin: 0px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: white;
+}
+
+#titleContainer {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: var(--iconSize);
+}
+
+.fullSizeImg {
+	display: inline-block;
+	height: var(--iconSize);
+	width: var(--iconSize);
+}
+
+.fullSize {
+	height: 100%;
+	width: auto;
+}
+
+#gradient {
+	position: absolute;
+	left: var(--iconSize);
+	display: inline-block;
+	width: 25%;
+	height: 100%;
+	background: linear-gradient(90deg, #d42e3b 0%, rgba(0, 0, 0, 0) 100%);
+	font-size: calc(var(--iconSize) - 15px);
+}
+
+.centerText {
+	position: absolute;
+	top: 50%;
+	left: 0%;
+	width: 100%;
+	text-align: center;
+	transform: translate(0%, -50%);
+}
+
+.titleCenterText {
+	position: absolute;
+	top: 50%;
+	left: 2%;
+	width: 80%;
+	transform: translate(0%, -50%);
+}
+
+#contentSectionOne {
+	position: absolute;
+	left: 5%;
+	width: 95%;
+	top: 10%;
+	height: 90%;
+}
+
+#sectionOneImg {
+	position: absolute;
+	left: calc(90% - 960px);
+	width: 960px;
+	height: 480px;
+	border-radius: 10px;
+	overflow: hidden;
+}
+
+#titleContent {
+	position: absolute;
+	font-size: 2.2vw;
+	top: 10%;
+	left: 0%;
+	width: calc(85% - 960px);
+}
+
+#titleParagraph {
+	position: absolute;
+	font-size: 1.2vw;
+	top: 17.5%;
+	left: 0%;
+	width: calc(85% - 960px);
+}
+
+#downloadLinks {
+	position: absolute;
+	font-size: 1.5vw;
+	top: 50%;
+	left: 0%;
+	width: 32.5%;
+}
+
+.download {
+	cursor: pointer;
+	display: inline-block;
+	background-color: rgb(240, 135, 0);
+	border-radius: 5px;
+	width: 25%;
+	text-align: center;
+	transition: all 250ms;
+}
+
+.download:hover {
+	background-color: rgb(255, 149, 0);
+}
+
+#copyright {
+	position: absolute;
+	font-size: 18px;
+	top: calc(100% - 22px);
+	left: 0%;
+}
