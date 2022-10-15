@@ -1,4 +1,4 @@
-# NitroType Hack \[Working 2022\]
+# NitroType Hack v2
 
 ### By kgsensei
 
