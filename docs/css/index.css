@@ -140,6 +140,10 @@ body {
 	display: none;
 }
 
+a {
+	text-decoration: none;
+}
+
 @media only screen and (max-device-width: 1375px) {
 	#mobileBlock {
 		position: absolute;
