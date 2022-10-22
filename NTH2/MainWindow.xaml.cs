@@ -1,17 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 
 namespace NitroType2
@@ -42,6 +30,11 @@ namespace NitroType2
             webview2.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
             webview2.CoreWebView2.AddWebResourceRequestedFilter(null, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceContext.All);
             webview2.CoreWebView2.WebResourceResponseReceived += CoreWebView2_WebResourceResponseReceived;
+            var answer = MessageBox.Show("Would you like to donate to support the creator?", "Donate", MessageBoxButton.YesNo);
+            if (answer == MessageBoxResult.Yes)
+            {
+                System.Diagnostics.Process.Start("https://www.paypal.com/donate/?business=8MYQCEFXWXTKQ&no_recurring=0&item_name=Donate+to+support+current+projects+and+enable+more+projects%2Ffeatures+in+the+future.&currency_code=USD");
+            }
         }
 
         private void CoreWebView2_WebResourceResponseReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceResponseReceivedEventArgs e)
@@ -54,9 +47,7 @@ namespace NitroType2
                             z=document.getElementsByClassName('dash-letter');
                             m='';for(let i=0;i<z.length;i++){m=m+z[i].innerText};
                             window.chrome.webview.postMessage(''+m);
-                        }else{
-                            setTimeout(()=>{cheatStart()},5);
-                        }
+                        }else{setTimeout(()=>{cheatStart()},5);}
                     };setTimeout(()=>{cheatStart()},2000);");
             }
         }
@@ -108,9 +99,7 @@ namespace NitroType2
                         z=document.getElementsByClassName('dash-letter');
                         m='';for(let i=0;i<z.length;i++){m=m+z[i].innerText};
                         window.chrome.webview.postMessage(''+m);
-                    }else{
-                        window.chrome.webview.postMessage('GAME_NOT_STARTED_ERROR');
-                    }");
+                    }else{window.chrome.webview.postMessage('GAME_NOT_STARTED_ERROR');}");
             }
             else
             {
@@ -144,6 +133,7 @@ namespace NitroType2
                 thingsorwhatever.accuracyLvl = 100;
                 thingsorwhatever.godMode = true;
                 cheatTypeSpeedSlider.IsEnabled = false;
+                cheatTypeAccSlider.IsEnabled = false;
             }
         }
 
@@ -157,6 +147,7 @@ namespace NitroType2
                 thingsorwhatever.accuracyLvl = Convert.ToInt32(cheatTypeAccSlider.Value);
                 thingsorwhatever.godMode = false;
                 cheatTypeSpeedSlider.IsEnabled = true;
+                cheatTypeAccSlider.IsEnabled = true;
             }
         }
 

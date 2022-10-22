@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:NitroType2"
         xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf" x:Class="NitroType2.MainWindow"
         mc:Ignorable="d"
-        Title="NitroType AutoTyper v2.0 [kgsensei]"
+        Title="NitroType AutoTyper v2.1 [kgsensei]"
         WindowState="Maximized" AllowsTransparency="False"
         MinWidth="700" MinHeight="450" Icon="favicon.ico">
     <Grid Background="Transparent">
@@ -36,7 +36,7 @@
         <CheckBox Grid.Column="1" Content="God Mode" HorizontalAlignment="Left" Margin="10,194,0,0" VerticalAlignment="Top"
                 Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
         <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" Width="200" Value="100"
-            Maximum="100" Minimum="0" ValueChanged="cheatTypeAccSlider_ValueChanged" x:Name="cheatTypeAccSlider" IsEnabled="False" Panel.ZIndex="99"/>
+            Maximum="100" Minimum="0" ValueChanged="cheatTypeAccSlider_ValueChanged" x:Name="cheatTypeAccSlider" Panel.ZIndex="99"/>
         <Label Grid.Column="1" Content="[Cheat Typing Accuracy]" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"
             Height="34" Width="200" FontSize="15"/>
         <CheckBox Grid.Column="1" Content="Automatic Start" HorizontalAlignment="Left" Margin="10,149,0,0" VerticalAlignment="Top"
