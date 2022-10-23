@@ -33,7 +33,7 @@ namespace NitroType2
             var answer = MessageBox.Show("Would you like to donate to support the creator?", "Donate", MessageBoxButton.YesNo);
             if (answer == MessageBoxResult.Yes)
             {
-                System.Diagnostics.Process.Start("https://www.paypal.com/donate/?business=8MYQCEFXWXTKQ&no_recurring=0&item_name=Donate+to+support+current+projects+and+enable+more+projects%2Ffeatures+in+the+future.&currency_code=USD");
+                System.Diagnostics.Process.Start("https://paypal.me/publickgsensei");
             }
         }
 
