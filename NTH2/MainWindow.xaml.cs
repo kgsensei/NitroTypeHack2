@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows;
-using MahApps.Metro.Controls;
 
 namespace NitroType2
 {
@@ -16,7 +15,7 @@ namespace NitroType2
     /// Interaction logic for MainWindow.xaml
     /// </summary>
 
-    public partial class MainWindow : MetroWindow
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {
@@ -30,11 +29,6 @@ namespace NitroType2
             webview2.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
             webview2.CoreWebView2.AddWebResourceRequestedFilter(null, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceContext.All);
             webview2.CoreWebView2.WebResourceResponseReceived += CoreWebView2_WebResourceResponseReceived;
-            var answer = MessageBox.Show("Would you like to donate to support the creator?", "Donate", MessageBoxButton.YesNo);
-            if (answer == MessageBoxResult.Yes)
-            {
-                System.Diagnostics.Process.Start("https://paypal.me/publickgsensei");
-            }
         }
 
         private void CoreWebView2_WebResourceResponseReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceResponseReceivedEventArgs e)
@@ -175,6 +169,11 @@ namespace NitroType2
                 thingsorwhatever.autoStart = false;
                 startCheatBtn.IsEnabled = true;
             }
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://paypal.me/publickgsensei");
         }
     }
 }
