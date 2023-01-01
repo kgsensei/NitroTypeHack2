@@ -37,27 +37,22 @@
             Height="34" Width="200" FontSize="15"/>
 
 
-        <CheckBox Grid.Column="1" Content="Automatic Start" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top"
-            Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_1" Unchecked="CheckBox_Unchecked_1"/>
+        <CheckBox Grid.Column="1" Content="Auto Start" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top"
+            Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_1" Unchecked="CheckBox_Unchecked_1" IsChecked="True"/>
         <CheckBox Grid.Column="1" Content="God Mode" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top"
                 Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        <CheckBox Grid.Column="1" Content="Random Variations" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top"
+                Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_2" Unchecked="CheckBox_Unchecked_2"/>
+        <CheckBox Grid.Column="1" Content="Auto Game" HorizontalAlignment="Left" Margin="10,285,0,0" VerticalAlignment="Top"
+                Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_3" Unchecked="CheckBox_Unchecked_3"/>
 
 
-        <Label Grid.Column="1" Content="DISCLAIMER:" HorizontalAlignment="Left" Margin="0,325,0,0"
-                VerticalAlignment="Top" Height="34" Width="200" FontSize="20"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,360,0,0" TextWrapping="Wrap"
-                VerticalAlignment="Top" Height="221" Width="200" Name="informationalTextBlock" FontSize="13px">
-            This cheat takes control of your keyboard. Do NOT change tabs while in a NitroType race, it can break other programs.
+        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,450,0,0" TextWrapping="Wrap"
+                VerticalAlignment="Top" Height="125" Width="200" Name="informationalTextBlock" FontSize="13px">
+            Copyright © kgsensei 2023.
             <LineBreak/><LineBreak/>
-            Copyright © kgsensei 2022.
-            <LineBreak/><LineBreak/>
-            DISCLAIMER: I (kgsensei) will not take responsibility for any actions made with this tool or any consequences
-            users face for the use of this tool.
-        </TextBlock>
-
-
-        <TextBlock Grid.Column="1" Margin="10,700,0,0" FontSize="15px">
             Want to help this project?
+            <LineBreak/><LineBreak/>
             <Hyperlink NavigateUri="https://paypal.me/publickgsensei" RequestNavigate="Hyperlink_RequestNavigate">
                 Click Here
             </Hyperlink>.

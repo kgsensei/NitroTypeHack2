@@ -8,7 +8,9 @@ namespace NitroType2
         public static int typingSpeed { get; set; } = 5;
         public static int accuracyLvl { get; set; } = 100;
         public static bool godMode { get; set; } = false;
-        public static bool autoStart { get; set; } = false;
+        public static bool autoStart { get; set; } = true;
+        public static bool randomize { get; set; } = false;
+        public static bool autoGame { get; set; } = false;
     }
 
     /// <summary>
@@ -33,17 +35,22 @@ namespace NitroType2
 
         private void CoreWebView2_WebResourceResponseReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceResponseReceivedEventArgs e)
         {
-            if (e.Request.Uri.IndexOf("nitrotype.com/race") != -1 && thingsorwhatever.autoStart == true)
+            if (e.Request.Uri.IndexOf("nitrotype.com/race") != -1 && thingsorwhatever.autoStart)
             {
-                webview2.ExecuteScriptAsync(@"
-                    function cheatStart(){
-                        if(document.getElementsByClassName('raceChat').length?false:true){
-                            z=document.getElementsByClassName('dash-letter');
-                            m='';for(let i=0;i<z.length;i++){m=m+z[i].innerText};
-                            window.chrome.webview.postMessage(''+m);
-                        }else{setTimeout(()=>{cheatStart()},5);}
-                    };setTimeout(()=>{cheatStart()},2000);");
+                injectAutoStartScript();
             }
+        }
+
+        private void injectAutoStartScript()
+        {
+            webview2.ExecuteScriptAsync(@"
+                function cheatStart(){
+                    if(document.getElementsByClassName('raceChat').length?false:true){
+                        z=document.getElementsByClassName('dash-letter');
+                        m='';for(let i=0;i<z.length;i++){m=m+z[i].innerText};
+                        window.chrome.webview.postMessage(''+m);
+                    }else{setTimeout(()=>{cheatStart()},10);}
+                };setTimeout(()=>{cheatStart()},2000);");
         }
 
         private void CoreWebView2_WebResourceRequested(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceRequestedEventArgs e)
@@ -68,7 +75,7 @@ namespace NitroType2
                 uri.IndexOf("intergi")           != -1 ||
                 uri.IndexOf("playwire")          != -1)
             {
-                e.Response = webview2.CoreWebView2.Environment.CreateWebResourceResponse(null, 404, "Not found", null);
+                e.Response = webview2.CoreWebView2.Environment.CreateWebResourceResponse(null, 404, "Not Found", null);
             }
         }
 
@@ -81,8 +88,6 @@ namespace NitroType2
                 thingsorwhatever.typingSpeed = total - change;
             }
         }
-
-        //document.getElementsByClassName('raceChat')
 
         async private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -114,7 +119,8 @@ namespace NitroType2
                 }
                 else
                 {
-                    App.simulateTypingText(browserData, thingsorwhatever.typingSpeed, thingsorwhatever.accuracyLvl);
+                    this.Activate();
+                    App.simulateTypingText(browserData, thingsorwhatever.typingSpeed, thingsorwhatever.accuracyLvl, webview2);
                 }
             }
         }
@@ -159,6 +165,10 @@ namespace NitroType2
             {
                 thingsorwhatever.autoStart = true;
                 startCheatBtn.IsEnabled = false;
+                if (webview2.Source.ToString().IndexOf("nitrotype.com/race") != -1)
+                {
+                    injectAutoStartScript();
+                }
             }
         }
 
@@ -174,6 +184,26 @@ namespace NitroType2
         private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
         {
             System.Diagnostics.Process.Start("https://paypal.me/publickgsensei");
+        }
+
+        private void CheckBox_Unchecked_2(object sender, RoutedEventArgs e)
+        {
+            thingsorwhatever.randomize = false;
+        }
+
+        private void CheckBox_Checked_2(object sender, RoutedEventArgs e)
+        {
+            thingsorwhatever.randomize = true;
+        }
+
+        private void CheckBox_Checked_3(object sender, RoutedEventArgs e)
+        {
+            thingsorwhatever.autoGame = true;
+        }
+
+        private void CheckBox_Unchecked_3(object sender, RoutedEventArgs e)
+        {
+            thingsorwhatever.autoGame = false;
         }
     }
 }
