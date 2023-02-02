@@ -1,12 +1,12 @@
 # NitroType Hack v2
 
-### By kgsensei
+#### By kgsensei
 
 ## How to Use
 
-Video Tutorial: https://www.youtube.com/watch?v=mI1olzudF4k
+[**Video Tutorial**](https://www.youtube.com/watch?v=mI1olzudF4k)
 
-1. Click this [link](https://github.com/kgsensei/NitroTypeHack2/releases).
+1. Click this [**link**](https://github.com/kgsensei/NitroTypeHack2/releases).
 2. Click on the button that says `nitroTypeInstaller.exe`.
 3. Click run the installer you downloaded.
 4. Open up the cheat application.
@@ -15,18 +15,18 @@ Video Tutorial: https://www.youtube.com/watch?v=mI1olzudF4k
 ## Help/Support
 
 If you need help with anything or you want to report a feature that is broken/request a new feature...  
-You can join my help discord server [here](https://discord.gg/U5A3QWXZKZ).  
-You can also create a new GitHub issue [here](https://github.com/kgsensei/NitroTypeHack2/issues).
+You can join my help discord server [**here**](https://discord.gg/U5A3QWXZKZ).  
+You can also create a new GitHub issue [**here**](https://github.com/kgsensei/NitroTypeHack2/issues).
 
 ## Features/Advantages
 
-- Currently Working
+- Currently Being Developed
 - Free & Open Source
 - Easy to Setup & Run
 - Runs Like a Desktop App
 - Built in Ad Blocker
 
-Can reach ~33,000 WPM at ~100% Accuracy.
+Can reach **~33,000** WPM at **~100%** Accuracy.
 
 ## Screenshots
 
