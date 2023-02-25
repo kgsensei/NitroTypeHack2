@@ -1,4 +1,6 @@
 ﻿using System;
+using System.IO;
+using System.Net;
 using System.Windows;
 
 namespace NitroType2
@@ -23,6 +25,19 @@ namespace NitroType2
         {
             InitializeComponent();
             AsyncInitialize();
+            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://rainydais.com/software.php");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+            httpWebRequest.Headers.Add("origin", "https://kgsensei.dev");
+
+            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                string json = "{\"project\":\"NitroTypeHack2\"}";
+
+                streamWriter.Write(json);
+            }
+
+            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
         }
 
         public async void AsyncInitialize()
