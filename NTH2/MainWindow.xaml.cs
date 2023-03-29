@@ -13,6 +13,7 @@ namespace NitroType2
         public static bool autoStart { get; set; } = true;
         public static bool randomize { get; set; } = false;
         public static bool autoGame { get; set; } = false;
+        public static bool useNitros { get; set; } = false;
     }
 
     /// <summary>
@@ -33,7 +34,6 @@ namespace NitroType2
             using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 string json = "{\"project\":\"NitroTypeHack2\"}";
-
                 streamWriter.Write(json);
             }
 
@@ -219,6 +219,22 @@ namespace NitroType2
         private void CheckBox_Unchecked_3(object sender, RoutedEventArgs e)
         {
             thingsorwhatever.autoGame = false;
+        }
+
+        private void CheckBox_Unchecked_4(object sender, RoutedEventArgs e)
+        {
+            if (!App.isCheatRunning)
+            {
+                thingsorwhatever.useNitros = false;
+            }
+        }
+
+        private void CheckBox_Checked_4(object sender, RoutedEventArgs e)
+        {
+            if (!App.isCheatRunning)
+            {
+                thingsorwhatever.useNitros = true;
+            }
         }
     }
 }
