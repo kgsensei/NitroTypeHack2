@@ -15,7 +15,7 @@
 ## Help/Support
 
 If you need help with anything or you want to report a feature that is broken/request a new feature...  
-You can join my help discord server [**here**](https://discord.gg/U5A3QWXZKZ).  
+You can join my help discord server [**here**](https://link.kgsensei.dev/discord).  
 You can also create a new GitHub issue [**here**](https://github.com/kgsensei/NitroTypeHack2/issues).
 
 ## Features/Advantages
