@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using WindowsInput;
 using System.Windows;
 using System.Threading.Tasks;
@@ -17,6 +18,13 @@ namespace NitroType2
         {
             isCheatRunning = true;
             InputSimulator sim = new InputSimulator();
+            if (thingsorwhatever.useNitros)
+            {
+                var words = Text.Split('\u00A0');
+                int longest = words.Max(w => w.Length);
+                words[longest] = "ʜ";
+                Text = string.Join(" ", words);
+            }
             char[] letters = Text.Replace("\u00A0", " ").ToCharArray();
             if (thingsorwhatever.randomize)
             {
@@ -29,7 +37,14 @@ namespace NitroType2
             int index = 0;
             foreach (char letter in letters)
             {
-                sim.Keyboard.TextEntry(letter);
+                if (letter == 'ʜ')
+                {
+                    sim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
+                }
+                else
+                {
+                    sim.Keyboard.TextEntry(letter);
+                }
                 if (index == maxIndex)
                 {
                     sim.Keyboard.TextEntry('+');

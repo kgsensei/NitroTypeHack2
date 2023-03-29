@@ -45,6 +45,8 @@
                 Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_2" Unchecked="CheckBox_Unchecked_2"/>
         <CheckBox Grid.Column="1" Content="Auto Game" HorizontalAlignment="Left" Margin="10,285,0,0" VerticalAlignment="Top"
                 Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_3" Unchecked="CheckBox_Unchecked_3"/>
+        <CheckBox Grid.Column="1" Content="Use Nitros" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top"
+                Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_4" Unchecked="CheckBox_Unchecked_4"/>
 
 
         <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,450,0,0" TextWrapping="Wrap"
