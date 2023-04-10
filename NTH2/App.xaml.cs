@@ -18,7 +18,6 @@ namespace NitroType2
         {
             isCheatRunning = true;
             InputSimulator sim = new InputSimulator();
-
             if (thingsorwhatever.useNitros)
             {
                 var words = Text.Split('\u00A0');
@@ -26,20 +25,16 @@ namespace NitroType2
                 words[longest] = "ʜ";
                 Text = string.Join(" ", words);
             }
-
             char[] letters = Text.Replace("\u00A0", " ").ToCharArray();
-
             if (thingsorwhatever.randomize)
             {
                 var gen = new Random();
                 accuracy -= (int)gen.NextDouble() * 10;
                 typingDelay -= (int)gen.NextDouble() * 10;
             }
-
             int toMiss = (int)Math.Floor(letters.Length * ((decimal)(100 - accuracy) / 100));
             int maxIndex = (int)Math.Floor(letters.Length / (decimal)(toMiss + 1));
             int index = 0;
-
             foreach (char letter in letters)
             {
                 if (letter == 'ʜ')
@@ -61,7 +56,6 @@ namespace NitroType2
                 }
                 await Task.Delay(typingDelay);
             }
-
             if (thingsorwhatever.autoGame)
             {
                 await Task.Delay(5000);
