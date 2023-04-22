@@ -20,6 +20,7 @@ You can also create a new GitHub issue [**here**](https://github.com/kgsensei/Ni
 
 ## Features/Advantages
 
+- 300+ Daily Users
 - Currently Being Developed
 - Free & Open Source
 - Easy to Setup & Run
