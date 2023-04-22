@@ -2,6 +2,8 @@
 using System.IO;
 using System.Net;
 using System.Windows;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium;
 
 namespace NitroType2
 {
@@ -14,6 +16,7 @@ namespace NitroType2
         public static bool randomize { get; set; } = false;
         public static bool autoGame { get; set; } = false;
         public static bool useNitros { get; set; } = false;
+        public static IWebDriver selenium { get; set; } = null;
     }
 
     /// <summary>
@@ -42,17 +45,36 @@ namespace NitroType2
 
         public async void AsyncInitialize()
         {
+            Environment.SetEnvironmentVariable("WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS", "--remote-debugging-port=9936");
+
             await webview2.EnsureCoreWebView2Async();
+            webview2.Initialized += Webview2_Initialized;
+
             webview2.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
             webview2.CoreWebView2.AddWebResourceRequestedFilter(null, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceContext.All);
             webview2.CoreWebView2.WebResourceResponseReceived += CoreWebView2_WebResourceResponseReceived;
         }
 
+        private void Webview2_Initialized(object sender, EventArgs e)
+        {
+            EdgeOptions eo = new EdgeOptions();
+
+            eo.AddArgument("--headless=new");
+            eo.UseWebView = true;
+            eo.DebuggerAddress = "localhost:9936";
+
+            thingsorwhatever.selenium = new EdgeDriver(eo);
+        }
+
         private void CoreWebView2_WebResourceResponseReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceResponseReceivedEventArgs e)
         {
-            if (e.Request.Uri.IndexOf("nitrotype.com/race") != -1 && thingsorwhatever.autoStart)
+            if (e.Request.Uri.IndexOf("nitrotype.com/race") != -1)
             {
-                injectAutoStartScript();
+                MessageBox.Show(thingsorwhatever.selenium.Title);
+                if (thingsorwhatever.autoStart)
+                {
+                    injectAutoStartScript();
+                }
             }
         }
 
@@ -71,27 +93,18 @@ namespace NitroType2
         private void CoreWebView2_WebResourceRequested(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceRequestedEventArgs e)
         {
             string uri = e.Request.Uri;
-            if (uri.IndexOf("googlesyndication") != -1 ||
-                uri.IndexOf("adservice")         != -1 ||
-                uri.IndexOf("adsystem")          != -1 ||
-                uri.IndexOf("adsafeprotected")   != -1 ||
-                uri.IndexOf("facebook")          != -1 ||
-                uri.IndexOf("googletagmanager")  != -1 ||
-                uri.IndexOf("google-analytics")  != -1 ||
-                uri.IndexOf("ad-delivery")       != -1 ||
-                uri.IndexOf("doubleclick")       != -1 ||
-                uri.IndexOf("adlightning")       != -1 ||
-                uri.IndexOf("smartadserver")     != -1 ||
-                uri.IndexOf("quantserve")        != -1 ||
-                uri.IndexOf("qccerttest")        != -1 ||
-                uri.IndexOf("qualaroo")          != -1 ||
-                uri.IndexOf("criteo")            != -1 ||
-                uri.IndexOf("moatads")           != -1 ||
-                uri.IndexOf("intergi")           != -1 ||
-                uri.IndexOf("playwire")          != -1)
+            string[] blocked = new string[] { "bugsnag", "googlesyndication", "adservice", "adsystem", "adsafeprotected",
+                "facebook", "googletagmanager", "google-analytics", "ad-delivery", "doubleclick", "adlightning",
+                "smartadserver", "quantserve", "qccerttest", "qualaroo", "criteo", "moatads", "intergi", "playwire",
+                "captcha", "cloudflareinsights", "btloader" };
+            for (int i = 0; i < blocked.Length; i++)
             {
-                e.Response = webview2.CoreWebView2.Environment.CreateWebResourceResponse(null, 404, "Not Found", null);
+                if (uri.IndexOf(blocked[i]) != -1)
+                {
+                    e.Response = webview2.CoreWebView2.Environment.CreateWebResourceResponse(null, 404, "Not Found", null);
+                }
             }
+            _ = webview2.ExecuteScriptAsync("console.log(" + uri + ")");
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
