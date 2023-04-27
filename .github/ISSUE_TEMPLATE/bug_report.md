@@ -23,10 +23,10 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS, Windows]
- - Browser [e.g. Chrome, Safari]
- - Version [e.g. 1.0, 1.1]
+**Please Provide the Following Information):**
+ - Operating System
+ - Screen Resolution (for some reason the cheat doesn't work on small screens)
+ - Cheat Version
 
 **Additional context**
 Add any other context about the problem here.
