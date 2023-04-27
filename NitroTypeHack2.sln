@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NitroType2", "NTH2\NitroType2.csproj", "{F842DD73-C7A6-4CC2-BA49-52F551046B99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NitroTypeHack2", "NitroTypeHack2\NitroTypeHack2.csproj", "{5DF633B0-87A5-4294-8662-D531AF498BC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F842DD73-C7A6-4CC2-BA49-52F551046B99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F842DD73-C7A6-4CC2-BA49-52F551046B99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F842DD73-C7A6-4CC2-BA49-52F551046B99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F842DD73-C7A6-4CC2-BA49-52F551046B99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DF633B0-87A5-4294-8662-D531AF498BC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DF633B0-87A5-4294-8662-D531AF498BC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DF633B0-87A5-4294-8662-D531AF498BC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DF633B0-87A5-4294-8662-D531AF498BC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {0124130C-2291-4D68-B8DB-6996C9492934}
+		SolutionGuid = {609EB563-9D95-466C-A239-2C64489ABCD9}
 	EndGlobalSection
 EndGlobal
