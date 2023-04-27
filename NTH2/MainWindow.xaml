@@ -16,8 +16,10 @@
             <ColumnDefinition Width="15*" MinWidth="200"/>
         </Grid.ColumnDefinitions>
 
+
         <Wpf:WebView2 Grid.Column="0" Name="webview2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                 Source="https://nitrotype.com" Margin="0,0,0,0" WebMessageReceived="Webview2_WebMessageReceived"/>
+
 
         <Button Grid.Column="1" Content="Start Cheat" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
                 Width="200" Height="37" FontSize="16" Click="Button_Click" Name="startCheatBtn"/>

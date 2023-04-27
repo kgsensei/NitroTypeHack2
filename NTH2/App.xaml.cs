@@ -4,8 +4,6 @@ using WindowsInput;
 using System.Windows;
 using System.Threading.Tasks;
 using Microsoft.Web.WebView2.Wpf;
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium;
 
 namespace NitroType2
 {
@@ -20,7 +18,6 @@ namespace NitroType2
         {
             isCheatRunning = true;
             InputSimulator sim = new InputSimulator();
-            //IAction act = new Actions(thingsorwhatever.selenium);
             if (thingsorwhatever.useNitros)
             {
                 var words = Text.Split('\u00A0');
@@ -46,11 +43,7 @@ namespace NitroType2
                 }
                 else
                 {
-                    //act.SendKeys(letter.ToString()).Build().Perform();
-                    new Actions(thingsorwhatever.selenium)
-                        .SendKeys(letter.ToString())
-                        .Perform();
-                    //sim.Keyboard.TextEntry(letter);
+                    sim.Keyboard.TextEntry(letter);
                 }
                 if (index == maxIndex)
                 {
