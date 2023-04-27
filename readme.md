@@ -26,8 +26,12 @@ You can also create a new GitHub issue [**here**](https://github.com/kgsensei/Ni
 - Easy to Setup & Run
 - Runs Like a Desktop App
 - Built in Ad Blocker
+- Auto Nitro Usage
+- God Mode Option
+- Auto New Game Feature
+- Random Variations (to Act Like a Human While Botting)
 
-Can reach **~33,000** WPM at **~100%** Accuracy.
+Can reach **~33,000** WPM at **~100%** Accuracy*.
 
 ## Screenshots
 
@@ -43,3 +47,5 @@ Preview of Cheat Capabilities
 This project & all associated code are copyright &copy; of kgsensei 2023.  
 Do not steal others code, it is illegal and copyright violation.  
 I (kgsensei) am not responsible for any way that you or anyone else uses this tool.
+
+DISCLAIMER: The cheats performance will depend on your computer specs, some computers will be able to achieve higher speeds and accuracies than others.
