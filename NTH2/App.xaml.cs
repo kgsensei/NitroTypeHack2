@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using WindowsInput;
 using System.Windows;
 using System.Threading.Tasks;
 
@@ -16,10 +15,9 @@ namespace NitroType2
     {
         public static bool isCheatRunning = false;
 
-        public async static void simulateTypingText(string Text, int typingDelay, int accuracy, CefSharp.Wpf.ChromiumWebBrowser CefEmbed)
+        public async static void simulateTypingText(string Text, int typingDelay, int accuracy, CefSharp.Wpf.HwndHost.ChromiumWebBrowser CefEmbed)
         {
             isCheatRunning = true;
-            InputSimulator sim = new InputSimulator();
 
             // If use nitros is set to true try and find the longest word
             // Note to self: This is currently broken for whatever reason, FIX.
@@ -81,16 +79,6 @@ namespace NitroType2
             {
                 Type = KeyEventType.Char,
                 WindowsKeyCode = (int)key
-            };
-            host.SendKeyEvent(evnt);
-        }
-
-        private static void pressKeyInt(int code, IBrowserHost host)
-        {
-            KeyEvent evnt = new KeyEvent()
-            {
-                Type = KeyEventType.Char,
-                WindowsKeyCode = code
             };
             host.SendKeyEvent(evnt);
         }

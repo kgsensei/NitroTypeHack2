@@ -34,10 +34,14 @@ namespace NitroType2
                 CachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CefSharp\\Cache")
             };
 
-            settings.CefCommandLineArgs.Add("disable-gpu");
+            settings.CefCommandLineArgs.Add("use-fake-ui-for-media-stream", "1");
+            settings.CefCommandLineArgs.Add("disable-plugins-discovery", "1");
+            settings.CefCommandLineArgs.Add("disable-direct-write", "1");
+            settings.CefCommandLineArgs.Add("disable-gpu-vsync", "1");
+            settings.SetOffScreenRenderingBestPerformanceArgs();
 
             // Initialize the Cef Embedded Browser with the settings we just built
-            Cef.Initialize(settings, performDependencyCheck: true, browserProcessHandler: null);
+            Cef.Initialize(settings, performDependencyCheck: false, browserProcessHandler: null);
             
             InitializeComponent();
             AsyncInitialize();
@@ -92,7 +96,7 @@ namespace NitroType2
                 // If the game has started then start the cheat automation
                 if (browserData == "GAME_NOT_STARTED_ERROR")
                 {
-                    MessageBox.Show("Game Hasn't Started Yet.", "NitroType AutoTyper", MessageBoxButton.OK);
+                    System.Windows.MessageBox.Show("Game Hasn't Started Yet.", "NitroType AutoTyper", MessageBoxButton.OK);
                 }
                 else
                 {
@@ -136,7 +140,7 @@ namespace NitroType2
             }
             else
             {
-                MessageBox.Show("Enter a Race to Use Cheat.", "NitroType AutoTyper", MessageBoxButton.OK);
+                System.Windows.MessageBox.Show("Enter a Race to Use Cheat.", "NitroType AutoTyper", MessageBoxButton.OK);
             }
         }
 
