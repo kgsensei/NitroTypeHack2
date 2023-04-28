@@ -8,7 +8,7 @@
         xmlns:cef="clr-namespace:CefSharp;assembly=CefSharp.Core"
         x:Class="NitroType2.MainWindow"
         mc:Ignorable="d"
-        Title="NitroType AutoTyper v3 [kgsensei]"
+        Title="NitroType AutoTyper v3_DEV_BUILD [kgsensei]"
         WindowState="Maximized"
         AllowsTransparency="False"
         MinWidth="700"
