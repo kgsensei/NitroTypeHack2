@@ -3,6 +3,10 @@ using System.IO;
 using System.Net;
 using System.Windows;
 
+using CefSharp;
+using CefSharp.Wpf;
+using CefSharp.Handler;
+
 namespace NitroType2
 {
     class thingsorwhatever
@@ -24,8 +28,20 @@ namespace NitroType2
     {
         public MainWindow()
         {
+            // Build Cef Embedded Browser settings
+            var settings = new CefSettings()
+            {
+                CachePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "CefSharp\\Cache")
+            };
+
+            settings.CefCommandLineArgs.Add("disable-gpu");
+
+            // Initialize the Cef Embedded Browser with the settings we just built
+            Cef.Initialize(settings, performDependencyCheck: true, browserProcessHandler: null);
+            
             InitializeComponent();
             AsyncInitialize();
+
             var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://rainydais.com/software.php");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
@@ -37,60 +53,90 @@ namespace NitroType2
                 streamWriter.Write(json);
             }
 
-            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            var _ = (HttpWebResponse)httpWebRequest.GetResponse();
         }
 
-        public async void AsyncInitialize()
+        public void AsyncInitialize()
         {
-            await webview2.EnsureCoreWebView2Async();
-            webview2.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
-            webview2.CoreWebView2.AddWebResourceRequestedFilter(null, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceContext.All);
-            webview2.CoreWebView2.WebResourceResponseReceived += CoreWebView2_WebResourceResponseReceived;
+            // Build request handler to block ad resources
+            RequestHandler requestHandler = new CustomRequestHandler();
+            CefEmbed.RequestHandler = requestHandler;
+
+            // Set callback for JavaScript so letters can be extracted from NitroType
+            CefEmbed.JavascriptMessageReceived += CefEmbed_JavascriptMessageReceived;
+            
+            // Set callback for loading state changes so the auto start script can self inject
+            CefEmbed.LoadingStateChanged += CefEmbed_LoadingStateChanged;
         }
 
-        private void CoreWebView2_WebResourceResponseReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceResponseReceivedEventArgs e)
+        private void CefEmbed_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
         {
-            if (e.Request.Uri.IndexOf("nitrotype.com/race") != -1 && thingsorwhatever.autoStart)
+            // Check if the page is no longer loading
+            if (!e.IsLoading)
             {
-                injectAutoStartScript();
+                // If page is not loading, url is of /race & auto start is true then inject auto start script
+                if (e.Browser.MainFrame.Url.IndexOf("nitrotype.com/race") != -1 && thingsorwhatever.autoStart)
+                {
+                    injectAutoStartScript();
+                }
             }
         }
 
+        private void CefEmbed_JavascriptMessageReceived(object sender, JavascriptMessageReceivedEventArgs e)
+        {
+            // Check to make sure cheat isn't already running
+            if (!App.isCheatRunning)
+            {
+                string browserData = e.Message.ToString();
+                // If the game isn't started throw an error message to user
+                // If the game has started then start the cheat automation
+                if (browserData == "GAME_NOT_STARTED_ERROR")
+                {
+                    MessageBox.Show("Game Hasn't Started Yet.", "NitroType AutoTyper", MessageBoxButton.OK);
+                }
+                else
+                {
+                    App.simulateTypingText(browserData, thingsorwhatever.typingSpeed, thingsorwhatever.accuracyLvl, CefEmbed);
+                }
+            }
+        }
+
+        // Inject the auto start script, this should call a C# method with the letters it extracts
         private void injectAutoStartScript()
         {
-            webview2.ExecuteScriptAsync(@"
+            CefEmbed.ExecuteScriptAsync(@"
                 function cheatStart(){
                     if(document.getElementsByClassName('raceChat').length?false:true){
                         z=document.getElementsByClassName('dash-letter');
-                        m='';for(let i=0;i<z.length;i++){m=m+z[i].innerText};
-                        window.chrome.webview.postMessage(''+m);
-                    }else{setTimeout(()=>{cheatStart()},10);}
-                };setTimeout(()=>{cheatStart()},2000);");
+                        m='';
+                        for(let i=0;i<z.length;i++){
+                            m=m+z[i].innerText
+                        };
+                        CefSharp.PostMessage(''+m);
+                    }else{
+                        setTimeout(()=>{cheatStart()},5);
+                    }
+                };
+                setTimeout(()=>{cheatStart()},2000);
+            ");
         }
 
-        private void CoreWebView2_WebResourceRequested(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceRequestedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string uri = e.Request.Uri;
-            if (uri.IndexOf("googlesyndication") != -1 ||
-                uri.IndexOf("adservice")         != -1 ||
-                uri.IndexOf("adsystem")          != -1 ||
-                uri.IndexOf("adsafeprotected")   != -1 ||
-                uri.IndexOf("facebook")          != -1 ||
-                uri.IndexOf("googletagmanager")  != -1 ||
-                uri.IndexOf("google-analytics")  != -1 ||
-                uri.IndexOf("ad-delivery")       != -1 ||
-                uri.IndexOf("doubleclick")       != -1 ||
-                uri.IndexOf("adlightning")       != -1 ||
-                uri.IndexOf("smartadserver")     != -1 ||
-                uri.IndexOf("quantserve")        != -1 ||
-                uri.IndexOf("qccerttest")        != -1 ||
-                uri.IndexOf("qualaroo")          != -1 ||
-                uri.IndexOf("criteo")            != -1 ||
-                uri.IndexOf("moatads")           != -1 ||
-                uri.IndexOf("intergi")           != -1 ||
-                uri.IndexOf("playwire")          != -1)
+            // If on race page and auto start is false then get attempt to get letters
+            // If not on race page throw message telling user to join a race
+            if (CefEmbed.Address.IndexOf("nitrotype.com/race") != -1 && thingsorwhatever.autoStart == false)
             {
-                e.Response = webview2.CoreWebView2.Environment.CreateWebResourceResponse(null, 404, "Not Found", null);
+                CefEmbed.ExecuteScriptAsync(@"
+                    if(document.getElementsByClassName('raceChat').length?false:true){
+                        z=document.getElementsByClassName('dash-letter');
+                        m='';for(let i=0;i<z.length;i++){m=m+z[i].innerText};
+                        CefSharp.PostMessage(''+m);
+                    }else{CefSharp.PostMessage('GAME_NOT_STARTED_ERROR');}");
+            }
+            else
+            {
+                MessageBox.Show("Enter a Race to Use Cheat.", "NitroType AutoTyper", MessageBoxButton.OK);
             }
         }
 
@@ -101,42 +147,6 @@ namespace NitroType2
                 int change = Convert.ToInt32(e.NewValue);
                 int total = Convert.ToInt32(cheatTypeSpeedSlider.Maximum + cheatTypeSpeedSlider.Minimum);
                 thingsorwhatever.typingSpeed = total - change;
-            }
-        }
-
-        async private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (webview2.Source.ToString().IndexOf("nitrotype.com/race") != -1 && thingsorwhatever.autoStart == false)
-            {
-                await webview2.ExecuteScriptAsync(@"
-                    if(document.getElementsByClassName('raceChat').length?false:true){
-                        z=document.getElementsByClassName('dash-letter');
-                        m='';for(let i=0;i<z.length;i++){m=m+z[i].innerText};
-                        window.chrome.webview.postMessage(''+m);
-                    }else{window.chrome.webview.postMessage('GAME_NOT_STARTED_ERROR');}");
-            }
-            else
-            {
-                MessageBox.Show("Enter a Race to Use Cheat.", "NitroType AutoTyper", MessageBoxButton.OK);
-            }
-            webview2.Focus();
-        }
-
-        private void Webview2_WebMessageReceived(object sender, Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs e)
-        {
-            webview2.Focus();
-            if (!App.isCheatRunning)
-            {
-                string browserData = e.TryGetWebMessageAsString();
-                if (browserData == "GAME_NOT_STARTED_ERROR")
-                {
-                    MessageBox.Show("Game Hasn't Started Yet.", "NitroType AutoTyper", MessageBoxButton.OK);
-                }
-                else
-                {
-                    this.Activate();
-                    App.simulateTypingText(browserData, thingsorwhatever.typingSpeed, thingsorwhatever.accuracyLvl, webview2);
-                }
             }
         }
 
@@ -180,7 +190,7 @@ namespace NitroType2
             {
                 thingsorwhatever.autoStart = true;
                 startCheatBtn.IsEnabled = false;
-                if (webview2.Source.ToString().IndexOf("nitrotype.com/race") != -1)
+                if (CefEmbed.Address.IndexOf("nitrotype.com/race") != -1)
                 {
                     injectAutoStartScript();
                 }
@@ -235,6 +245,50 @@ namespace NitroType2
             {
                 thingsorwhatever.useNitros = true;
             }
+        }
+    }
+
+    public class CustomRequestHandler : RequestHandler
+    {
+        protected override IResourceRequestHandler GetResourceRequestHandler(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, bool isNavigation, bool isDownload, string requestInitiator, ref bool disableDefaultHandling)
+        {
+            // Get url in a string variable then check it across ad services
+            // note to self: clean this up with a for loop or something
+            string uri = request.Url;
+            if (uri.IndexOf("googlesyndication") != -1 ||
+                uri.IndexOf("adservice")         != -1 ||
+                uri.IndexOf("adsystem")          != -1 ||
+                uri.IndexOf("adsafeprotected")   != -1 ||
+                uri.IndexOf("facebook")          != -1 ||
+                uri.IndexOf("googletagmanager")  != -1 ||
+                uri.IndexOf("google-analytics")  != -1 ||
+                uri.IndexOf("ad-delivery")       != -1 ||
+                uri.IndexOf("doubleclick")       != -1 ||
+                uri.IndexOf("adlightning")       != -1 ||
+                uri.IndexOf("smartadserver")     != -1 ||
+                uri.IndexOf("quantserve")        != -1 ||
+                uri.IndexOf("qccerttest")        != -1 ||
+                uri.IndexOf("qualaroo")          != -1 ||
+                uri.IndexOf("criteo")            != -1 ||
+                uri.IndexOf("moatads")           != -1 ||
+                uri.IndexOf("intergi")           != -1 ||
+                uri.IndexOf("playwire")          != -1)
+            {
+                // If the url contains an ad service call the class that discards requests
+                return new DiscardRequest();
+            }
+            return null;
+        }
+    }
+
+    // Class to discard any requests forwarded to it
+    public class DiscardRequest : CefSharp.Handler.ResourceRequestHandler
+    {
+        protected override CefReturnValue OnBeforeResourceLoad(IWebBrowser chromiumWebBrowser, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
+        {
+            request.Url = "";
+            request.Dispose();
+            return CefReturnValue.Cancel;
         }
     }
 }

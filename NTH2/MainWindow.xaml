@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NitroType2"
-        xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        xmlns:Wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        xmlns:cef="clr-namespace:CefSharp;assembly=CefSharp.Core"
         x:Class="NitroType2.MainWindow"
         mc:Ignorable="d"
         Title="NitroType AutoTyper v3 [kgsensei]"
@@ -17,8 +18,9 @@
         </Grid.ColumnDefinitions>
 
 
-        <Wpf:WebView2 Grid.Column="0" Name="webview2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                Source="https://nitrotype.com" Margin="0,0,0,0" WebMessageReceived="Webview2_WebMessageReceived"/>
+        <Wpf:ChromiumWebBrowser Grid.Column="0" x:Name="CefEmbed" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                Address="https://nitrotype.com" Margin="0,0,0,0">
+        </Wpf:ChromiumWebBrowser>
 
 
         <Button Grid.Column="1" Content="Start Cheat" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"

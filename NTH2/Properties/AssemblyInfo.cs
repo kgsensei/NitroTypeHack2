@@ -8,13 +8,15 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("NitroType2")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A script to assist your NitroType gameplay!")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("kgsensei")]
 [assembly: AssemblyProduct("NTH2")]
 [assembly: AssemblyCopyright("Copyright © kgsensei 2022")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
+
+[assembly: Guid("ab850523-b555-4e96-9fe4-bdfb95271ed8")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
