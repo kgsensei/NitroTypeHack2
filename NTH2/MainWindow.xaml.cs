@@ -49,7 +49,7 @@ namespace NitroType2
             }
             catch (Exception ex)
             {
-                MessageBox.Show("NitroType Cheat Crashed\nError Info:\n" + ex.InnerException.ToString());
+                MessageBox.Show("NitroType Cheat Crashed\nError Info:\n" + ex.ToString());
             }
             AsyncInitialize();
 
