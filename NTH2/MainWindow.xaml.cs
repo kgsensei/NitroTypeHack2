@@ -43,7 +43,14 @@ namespace NitroType2
             // Initialize the Cef Embedded Browser with the settings we just built
             Cef.Initialize(settings, performDependencyCheck: false, browserProcessHandler: null);
             
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("NitroType Cheat Crashed\nError Info:\n" + ex.InnerException.ToString());
+            }
             AsyncInitialize();
 
             var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://rainydais.com/software.php");
