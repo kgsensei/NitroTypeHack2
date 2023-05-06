@@ -20,7 +20,7 @@ You can also create a new GitHub issue [**here**](https://github.com/kgsensei/Ni
 
 ## Features/Advantages
 
-- 300+ Daily Users
+- 320+ Daily Users
 - Currently Being Developed
 - Free & Open Source
 - Easy to Setup & Run
@@ -29,6 +29,8 @@ You can also create a new GitHub issue [**here**](https://github.com/kgsensei/Ni
 - Auto Nitro Usage
 - God Mode Option
 - Auto New Game Feature
+- Runs in Background
+- Captcha Evasion (Might get Patched)
 - Random Variations (to Act Like a Human While Botting)
 
 Can reach **~33,000** WPM at **~100%** Accuracy*.
