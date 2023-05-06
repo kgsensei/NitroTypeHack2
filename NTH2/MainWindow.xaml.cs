@@ -73,6 +73,11 @@ namespace NitroType2
             RequestHandler requestHandler = new CustomRequestHandler();
             CefEmbed.RequestHandler = requestHandler;
 
+            // Load auto captcha from extensions
+            RequestContext requestContext = new RequestContext();
+            ExtensionHandler extensionHandler = new ExtensionHandler();
+            requestContext.LoadExtensionFromDirectory("nitrotype-captcha-auto-clicker", extensionHandler);
+
             // Set callback for JavaScript so letters can be extracted from NitroType
             CefEmbed.JavascriptMessageReceived += CefEmbed_JavascriptMessageReceived;
             
@@ -158,6 +163,11 @@ namespace NitroType2
                 int change = Convert.ToInt32(e.NewValue);
                 int total = Convert.ToInt32(cheatTypeSpeedSlider.Maximum + cheatTypeSpeedSlider.Minimum);
                 thingsorwhatever.typingSpeed = total - change;
+                if (CT_WPM != null)
+                {
+                    float wpm = ((change / 5) * 60) / 19;
+                    CT_WPM.Content = "[Typing Speed][" + wpm.ToString() + " WPM±20] (?)";
+                }
             }
         }
 
@@ -192,6 +202,11 @@ namespace NitroType2
             if (!App.isCheatRunning && !thingsorwhatever.godMode)
             {
                 thingsorwhatever.accuracyLvl = Convert.ToInt32(e.NewValue);
+                if (CT_Acc != null)
+                {
+                    float acc = (int)Math.Floor(100 * ((decimal)(thingsorwhatever.accuracyLvl) / 100));
+                    CT_Acc.Content = "[Typing Accuracy][" + acc + "%±5]";
+                }
             }
         }
 
@@ -256,6 +271,11 @@ namespace NitroType2
             {
                 thingsorwhatever.useNitros = true;
             }
+        }
+
+        private void Image_MouseLeftButtonUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://pieclicker.com");
         }
     }
 

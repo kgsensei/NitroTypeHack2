@@ -8,7 +8,7 @@
         xmlns:cef="clr-namespace:CefSharp;assembly=CefSharp.Core"
         x:Class="NitroType2.MainWindow"
         mc:Ignorable="d"
-        Title="NitroType AutoTyper v3_DEV_BUILD [kgsensei]"
+        Title="NitroType AutoTyper v4 [kgsensei]"
         WindowState="Maximized"
         AllowsTransparency="False"
         MinWidth="700"
@@ -16,8 +16,8 @@
         Icon="favicon.ico">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="85*" MinWidth="500"/>
-            <ColumnDefinition Width="15*" MinWidth="200"/>
+            <ColumnDefinition Width="79*" MinWidth="500"/>
+            <ColumnDefinition Width="16*" MinWidth="200"/>
         </Grid.ColumnDefinitions>
 
 
@@ -30,39 +30,32 @@
                 Width="200" Height="37" FontSize="16" Click="Button_Click" Name="startCheatBtn"/>
 
 
-        <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="200" Value="100"
-                Maximum="250" Minimum="35" ValueChanged="Slider_ValueChanged" Name="cheatTypeSpeedSlider" Panel.ZIndex="99"/>
-        <Label Grid.Column="1" Content="[Cheat Typing Speed]" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"
-                Height="34" Width="200" FontSize="15"/>
+        <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="240" Value="100"
+                Maximum="300" Minimum="30" ValueChanged="Slider_ValueChanged" Name="cheatTypeSpeedSlider" Panel.ZIndex="99"/>
+        <Label Grid.Column="1" Content="[Typing Speed][60 WPM±15] (?)" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"
+                Height="34" Width="300" FontSize="15" Name="CT_WPM" ToolTip="This gets more inaccurate as the slider goes up."/>
 
 
-        <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" Width="200" Value="100"
-            Maximum="100" Minimum="0" ValueChanged="cheatTypeAccSlider_ValueChanged" x:Name="cheatTypeAccSlider" Panel.ZIndex="99"/>
-        <Label Grid.Column="1" Content="[Cheat Typing Accuracy]" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"
-            Height="34" Width="200" FontSize="15"/>
+        <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" Width="240" Value="100"
+            Maximum="100" Minimum="50" ValueChanged="cheatTypeAccSlider_ValueChanged" x:Name="cheatTypeAccSlider" Panel.ZIndex="99"/>
+        <Label Grid.Column="1" Content="[Typing Accuracy][100%±5]" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"
+            Height="34" Width="300" FontSize="15" Name="CT_Acc"/>
 
 
         <CheckBox Grid.Column="1" Content="Auto Start" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top"
             Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_1" Unchecked="CheckBox_Unchecked_1" IsChecked="True"/>
-        <CheckBox Grid.Column="1" Content="God Mode" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top"
-                Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        <CheckBox Grid.Column="1" Content="God Mode (?)" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top"
+                Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked" ToolTip="Breaks your game, will get you banned."/>
         <CheckBox Grid.Column="1" Content="Random Variations" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top"
                 Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_2" Unchecked="CheckBox_Unchecked_2"/>
         <CheckBox Grid.Column="1" Content="Auto Game" HorizontalAlignment="Left" Margin="10,285,0,0" VerticalAlignment="Top"
                 Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_3" Unchecked="CheckBox_Unchecked_3"/>
-        <CheckBox Grid.Column="1" Content="Use Nitros" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top"
-                Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_4" Unchecked="CheckBox_Unchecked_4"/>
+        <CheckBox Grid.Column="1" Content="Use Nitros (?)" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top"
+                Height="40" Width="200" FontSize="16" Checked="CheckBox_Checked_4" Unchecked="CheckBox_Unchecked_4" ToolTip="Breaks on Guest Race"/>
 
 
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10,450,0,0" TextWrapping="Wrap"
-                VerticalAlignment="Top" Height="125" Width="200" Name="informationalTextBlock" FontSize="13px">
-            Copyright © kgsensei 2023.
-            <LineBreak/><LineBreak/>
-            Want to help this project?
-            <LineBreak/><LineBreak/>
-            <Hyperlink NavigateUri="https://paypal.me/publickgsensei" RequestNavigate="Hyperlink_RequestNavigate">
-                Click Here
-            </Hyperlink>.
-        </TextBlock>
+        <Label Grid.Column="1" FontSize="11" Content="Ad:" HorizontalAlignment="Left" Margin="5,370,0,0" VerticalAlignment="Top"/>
+        <Image HorizontalAlignment="Left" Height="125" Margin="5,340,0,0" VerticalAlignment="Top" Width="227" Grid.Column="1" Source="Library_Logo_Transparent.png" MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
+        <Label Grid.Column="1" FontSize="15" Content="Play PieClicker on Steam today!" HorizontalAlignment="Left" Margin="15,460,0,0" VerticalAlignment="Top" MouseLeftButtonUp="Image_MouseLeftButtonUp"/>
     </Grid>
 </Window>

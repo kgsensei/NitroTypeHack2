@@ -36,8 +36,8 @@ namespace NitroType2
             if (thingsorwhatever.randomize)
             {
                 var gen = new Random();
-                accuracy = accuracy - (int)gen.NextDouble() * 10;
-                typingDelay = typingDelay - (int)gen.NextDouble() * 10;
+                accuracy = accuracy - ((int)gen.NextDouble() * 10);
+                typingDelay = typingDelay - ((int)gen.NextDouble() * 10);
             }
             // Calculate the number of characters to miss based on accuracy
             int toMiss = (int)Math.Floor(letters.Length * ((decimal)(100 - accuracy) / 100));
