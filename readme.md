@@ -37,11 +37,11 @@ Can reach **~33,000** WPM at **~100%** Accuracy*.
 
 ## Screenshots
 
-![Interface Preview](/screenshots/1.png)
+<img src="/screenshots/1.png" width="50%">
 Preview of Cheat Interface
 
 
-![God Mode Preview](/screenshots/2.png)
+<img src="/screenshots/2.png" width="50%">
 Preview of Cheat Capabilities
 
 ## Legal
