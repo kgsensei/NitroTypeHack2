@@ -38,6 +38,7 @@ namespace NitroType2
             settings.CefCommandLineArgs.Add("disable-plugins-discovery", "1");
             settings.CefCommandLineArgs.Add("disable-direct-write", "1");
             settings.CefCommandLineArgs.Add("disable-gpu-vsync", "1");
+            
             settings.SetOffScreenRenderingBestPerformanceArgs();
 
             // Initialize the Cef Embedded Browser with the settings we just built
@@ -175,7 +176,7 @@ namespace NitroType2
         {
             if (!App.isCheatRunning)
             {
-                thingsorwhatever.typingSpeed = 0;
+                thingsorwhatever.typingSpeed = 8;
                 thingsorwhatever.accuracyLvl = 100;
                 thingsorwhatever.godMode = true;
                 cheatTypeSpeedSlider.IsEnabled = false;
