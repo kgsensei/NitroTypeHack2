@@ -14,6 +14,8 @@
 
 ## Help/Support
 
+The Java rewrite source code can be found here: [**here**](https://github.com/kgsensei/NitroTypeHack2/tree/JavaRewrite), **IT IS NOT FINISHED**
+
 If you need help with anything or you want to report a feature that is broken/request a new feature...  
 You can join my help discord server [**here**](https://link.kgsensei.dev/discord).  
 You can also create a new GitHub issue [**here**](https://github.com/kgsensei/NitroTypeHack2/issues).
