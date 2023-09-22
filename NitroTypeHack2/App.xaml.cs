@@ -28,12 +28,11 @@ namespace NitroTypeHack2
                 text = string.Join(" ", words);
             }
 
-            // .Replace("\u00A0", " ")
-            char[] letters = text.ToCharArray();
+            char[] letters = text.Replace("\u00A0", " ").ToCharArray();
+            var gen = new Random();
 
             if (Globals.randomize)
             {
-                var gen = new Random();
                 accuracy -= (int)gen.NextDouble() * 20;
                 typingDelay -= (int)gen.NextDouble() * 20;
             }
@@ -44,17 +43,26 @@ namespace NitroTypeHack2
 
             foreach (char letter in letters)
             {
-                textEntry(letter, webview2);
-                /*
                 if (letter == 'ʜ')
                 {
-                    sim.Keyboard.KeyPress(WindowsInput.Native.VirtualKeyCode.RETURN);
+                    string args;
+                    args = @"{""type"": ""rawKeyDown"", ""windowsVirtualKeyCode"": 13, ""unmodifiedText"": ""\r"", ""text"": ""\r""}";
+                    _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
+                        "Input.dispatchKeyEvent",
+                        args
+                        );
+
+                    args = @"{""type"": ""keyUp"", ""windowsVirtualKeyCode"": 13, ""unmodifiedText"": ""\r"", ""text"": ""\r""}";
+                    _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
+                        "Input.dispatchKeyEvent",
+                        args
+                        );
                 }
                 else
                 {
                     textEntry(letter, webview2);
                 }
-                */
+
                 if (index == maxIndex)
                 {
                     textEntry('+', webview2);
@@ -64,12 +72,15 @@ namespace NitroTypeHack2
                 {
                     index = index + 1;
                 }
+
                 await Task.Delay(typingDelay);
+
                 if (Globals.autoGame)
                 {
-                    await Task.Delay(5000);
+                    await Task.Delay(gen.Next(4900, 6100));
                     webview2.Reload();
                 }
+
                 isCheatRunning = false;
             }
         }
@@ -79,17 +90,27 @@ namespace NitroTypeHack2
             Microsoft.Web.WebView2.Wpf.WebView2 webview2)
         {
             string args;
-            if (letter.Equals(" "))
+            if (letter == 32)
             {
-                args = @"{""type"": ""char"", ""text"": ""\u0020""}";
+                args = @"{""type"": ""rawKeyDown"", ""windowsVirtualKeyCode"": 32, ""unmodifiedText"": "" "", ""text"": "" ""}";
+                _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
+                    "Input.dispatchKeyEvent",
+                    args
+                    );
+
+                args = @"{""type"": ""keyUp"", ""windowsVirtualKeyCode"": 32, ""unmodifiedText"": "" "", ""text"": "" ""}";
+                _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
+                    "Input.dispatchKeyEvent",
+                    args
+                    );
             } else
             {
                 args = @"{""type"": ""char"", ""text"": """ + letter + @"""}";
+                _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
+                    "Input.dispatchKeyEvent",
+                    args
+                    );
             }
-            _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                "Input.dispatchKeyEvent",
-                args
-                );
         }
     }
 }

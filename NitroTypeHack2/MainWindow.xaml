@@ -27,7 +27,7 @@
                 Foreground="White" BorderBrush="#FF323237" FontFamily="Arial"/>
 
         <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="200" Value="100"
-                Maximum="250" Minimum="35" ValueChanged="slider_change_speed" Name="cheatTypeSpeedSlider" Panel.ZIndex="99"
+                Maximum="350" Minimum="30" ValueChanged="slider_change_speed" Name="cheatTypeSpeedSlider" Panel.ZIndex="99"
                 Foreground="White"/>
         
         <Label Grid.Column="1" Content="[Cheat Typing Speed]" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"
@@ -43,19 +43,22 @@
 
 
         <CheckBox Grid.Column="1" Content="Auto Start" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top"
-                    Height="40" Width="200" FontSize="16" Background="#FF646469" BorderBrush="#FF28282D" Foreground="White" IsChecked="True"/>
+                    Height="40" Width="200" FontSize="16" Background="#FF646469" BorderBrush="#FF28282D" Foreground="White" IsChecked="True"
+                    Checked="button_AutoStartOn" Unchecked="button_AutoStartOff"/>
         
         <CheckBox Grid.Column="1" Content="God Mode" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top"
-                Height="40" Width="200" FontSize="16" Background="#FF646469"
-                  BorderBrush="#FF28282D" Foreground="White"/>
+                Height="40" Width="200" FontSize="16" Background="#FF646469" Name="button_GodMode"
+                  BorderBrush="#FF28282D" Foreground="White" Checked="button_GodModeEnabled" Unchecked="button_GodModeDisabled"/>
         
         <CheckBox Grid.Column="1" Content="Random Variations" HorizontalAlignment="Left" Margin="10,250,0,0" VerticalAlignment="Top"
                 Height="40" Width="200" FontSize="16" Background="#FF646469" BorderBrush="#FF28282D" Foreground="White"/>
         
         <CheckBox Grid.Column="1" Content="Auto Game" HorizontalAlignment="Left" Margin="10,285,0,0" VerticalAlignment="Top"
-                Height="40" Width="200" FontSize="16" Background="#FF646469" BorderBrush="#FF28282D" Foreground="White"/>
+                Height="40" Width="200" FontSize="16" Background="#FF646469" BorderBrush="#FF28282D" Foreground="White"
+                  Checked="button_AutoGameOn" Unchecked="button_AutoGameOff" Name="button_AutoGame"/>
         
         <CheckBox Grid.Column="1" Content="Use Nitros" HorizontalAlignment="Left" Margin="10,320,0,0" VerticalAlignment="Top"
-                Height="40" Width="200" FontSize="16" Background="#FF646469" BorderBrush="#FF28282D" Foreground="White"/>
+                Height="40" Width="200" FontSize="16" Background="#FF646469" BorderBrush="#FF28282D" Foreground="White"
+                  Checked="button_UseNitrosOn" Unchecked="button_UseNitrosOff" Name="button_UseNitros"/>
     </Grid>
 </Window>

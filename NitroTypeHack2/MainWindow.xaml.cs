@@ -83,7 +83,6 @@ namespace NitroTypeHack2
             {
                 MessageBox.Show(Messages.err_enter_a_race, Messages.title, MessageBoxButton.OK);
             }
-            webview2.Focus();
         }
 
         // On slider update change the speed.
@@ -99,11 +98,107 @@ namespace NitroTypeHack2
             }
         }
 
+        private void button_GodModeEnabled(object sender, RoutedEventArgs e)
+        {
+            if (!App.isCheatRunning)
+            {
+                Globals.typingSpeed = 1;
+                Globals.accuracyLevel = 100;
+                Globals.godMode = true;
+                cheatTypeSpeedSlider.IsEnabled = false;
+                cheatTypeAccSlider.IsEnabled = false;
+            }
+            else
+            {
+                button_GodMode.IsChecked = false;
+            }
+        }
+
+        private void button_GodModeDisabled(object sender, RoutedEventArgs e)
+        {
+            if (!App.isCheatRunning)
+            {
+                int change = Convert.ToInt32(cheatTypeSpeedSlider.Value);
+                int total = Convert.ToInt32(cheatTypeSpeedSlider.Maximum + cheatTypeSpeedSlider.Minimum);
+                Globals.typingSpeed = total - change;
+                Globals.accuracyLevel = Convert.ToInt32(cheatTypeAccSlider.Value);
+                Globals.godMode = false;
+                cheatTypeSpeedSlider.IsEnabled = true;
+                cheatTypeAccSlider.IsEnabled = true;
+            }
+            else
+            {
+                button_GodMode.IsChecked = true;
+            }
+        }
+
+        private void button_AutoStartOn(object sender, RoutedEventArgs e)
+        {
+            if (!App.isCheatRunning)
+            {
+                Globals.autoStart = true;
+                startCheatBtn.IsEnabled = false;
+                if (webview2.Source.ToString().IndexOf("nitrotype.com/race") != -1)
+                {
+                    injectAutoStartScript();
+                }
+            }
+        }
+
+        private void button_AutoStartOff(object sender, RoutedEventArgs e)
+        {
+            if (!App.isCheatRunning)
+            {
+                Globals.autoStart = false;
+                startCheatBtn.IsEnabled = true;
+            }
+        }
+
+        private void button_AutoGameOn(object sender, RoutedEventArgs e)
+        {
+            if (!App.isCheatRunning)
+            {
+                Globals.autoGame = true;
+            }
+        }
+
+        private void button_AutoGameOff(object sender, RoutedEventArgs e)
+        {
+            if (!App.isCheatRunning)
+            {
+                Globals.autoGame = false;
+            }
+        }
+
+        private void button_UseNitrosOn(object sender, RoutedEventArgs e)
+        {
+            if (!App.isCheatRunning)
+            {
+                Globals.useNitros = true;
+            }
+            else
+            {
+                button_UseNitros.IsChecked = false;
+            }
+        }
+
+        private void button_UseNitrosOff(object sender, RoutedEventArgs e)
+        {
+            if (!App.isCheatRunning)
+            {
+                Globals.useNitros = false;
+            }
+            else
+            {
+                button_UseNitros.IsChecked = true;
+            }
+        }
+
         // Inject a script that will auto start the cheat.
         private void injectAutoStartScript()
         {
             var r = new Random();
-            string funcName = new String(Enumerable.Range(0, 25).Select(n => (Char)(r.Next(32, 127))).ToArray());
+            string funcName = new String(Enumerable.Range(0, 25).Select(n => (Char)(r.Next(65, 90))).ToArray());
             webview2.ExecuteScriptAsync(@"
                 function " + funcName + @"(){
                     if(document.getElementsByClassName('raceChat').length?false:true){
@@ -119,7 +214,6 @@ namespace NitroTypeHack2
             object sender,
             Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs e)
         {
-            webview2.Focus();
             if (!App.isCheatRunning)
             {
                 string browserData = e.TryGetWebMessageAsString();
