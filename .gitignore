@@ -1,6 +1,6 @@
 .vs
 Output
-NTH2/bin/*
-NTH2/obj/*
+NitroTypeHack2/bin/*
+NitroTypeHack2/obj/*
 packages/*
 *.iss
