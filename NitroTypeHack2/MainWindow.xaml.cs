@@ -16,7 +16,6 @@ namespace NitroTypeHack2
         public static int accuracyLevel { get; set; } = 100;
         public static bool godMode { get; set; } = false;
         public static bool autoStart { get; set; } = true;
-        public static bool randomize { get; set; } = false;
         public static bool autoGame { get; set; } = false;
         public static bool useNitros { get; set; } = false;
     }
@@ -95,6 +94,16 @@ namespace NitroTypeHack2
                 int change = Convert.ToInt32(e.NewValue);
                 int total = Convert.ToInt32(cheatTypeSpeedSlider.Maximum + cheatTypeSpeedSlider.Minimum);
                 Globals.typingSpeed = total - change;
+            }
+        }
+
+        private void slider_change_accuracy(
+            object sender,
+            RoutedPropertyChangedEventArgs<double> e)
+        {
+            if(!Globals.godMode && !App.isCheatRunning)
+            {
+                Globals.accuracyLevel = Convert.ToInt32(e.NewValue);
             }
         }
 
