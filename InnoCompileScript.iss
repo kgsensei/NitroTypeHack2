@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "NitroType AutoTyper"
-#define MyAppVersion "4.1"
+#define MyAppVersion "4.3"
 #define MyAppPublisher "kgsensei"
 #define MyAppURL "https://github.com/kgsensei/NitroTypeHack2"
 #define MyAppExeName "NitroType2.exe"
@@ -35,8 +35,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "D:\_Code Projects\__GitHub\NitroTypeHack2\NTH2\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\_Code Projects\__GitHub\NitroTypeHack2\NTH2\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "D:\_Code Projects\__GitHub\NitroTypeHack2\NitroTypeHack2\bin\Release\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "D:\_Code Projects\__GitHub\NitroTypeHack2\NitroTypeHack2\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
