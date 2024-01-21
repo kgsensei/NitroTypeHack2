@@ -31,66 +31,78 @@ namespace NitroTypeHack2
             char[] letters = text.Replace("\u00A0", " ").ToCharArray();
             var gen = new Random();
 
+            char[] allowedCharsToMiss = { '+', '-', '=', '[', ']', '<', '>', '`', '~' };
+
             int toMiss = (int)Math.Floor(letters.Length * ((decimal)(100 - accuracy) / 100));
             int maxIndex = (int)Math.Floor(letters.Length / (decimal)(toMiss + 1));
             int index = 0;
 
-            foreach (char letter in letters)
+            for (int i = 0; i < letters.Length; i++)
             {
+                char letter = letters[i];
+
                 if (letter == 'ʜ')
                 {
                     string args;
                     args = @"{""type"": ""rawKeyDown"", ""windowsVirtualKeyCode"": 13, ""unmodifiedText"": ""\r"", ""text"": ""\r""}";
                     _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                        "Input.dispatchKeyEvent",
-                        args
+                            "Input.dispatchKeyEvent",
+                            args
                         );
 
                     args = @"{""type"": ""keyUp"", ""windowsVirtualKeyCode"": 13, ""unmodifiedText"": ""\r"", ""text"": ""\r""}";
                     _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                        "Input.dispatchKeyEvent",
-                        args
+                            "Input.dispatchKeyEvent",
+                            args
                         );
+
+                    // Do this to avoid the space as next character,
+                    // if we press it then the accuracy level will
+                    // be offset.
+                    i++;
                 }
                 else
                 {
                     string args;
+                    // Letter 32 is a newline character
                     if (letter == 32)
                     {
                         args = @"{""type"": ""rawKeyDown"", ""windowsVirtualKeyCode"": 32, ""unmodifiedText"": "" "", ""text"": "" ""}";
                         _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                            "Input.dispatchKeyEvent",
-                            args
+                                "Input.dispatchKeyEvent",
+                                args
                             );
 
                         args = @"{""type"": ""keyUp"", ""windowsVirtualKeyCode"": 32, ""unmodifiedText"": "" "", ""text"": "" ""}";
                         _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                            "Input.dispatchKeyEvent",
-                            args
+                                "Input.dispatchKeyEvent",
+                                args
                             );
                     }
                     else
                     {
                         args = @"{""type"": ""char"", ""text"": """ + letter + @"""}";
                         _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                            "Input.dispatchKeyEvent",
-                            args
+                                "Input.dispatchKeyEvent",
+                                args
                             );
                     }
                 }
 
                 if (index == maxIndex)
                 {
-                    string args = @"{""type"": ""char"", ""text"": ""+""}";
+                    // This will get one of the random 'allowed to miss' characters,
+                    // that way we aren't using the same one for every miss.
+                    string args = @"{""type"": ""char"", ""text"": """ + allowedCharsToMiss[gen.Next(0, allowedCharsToMiss.Length - 1)] + @"""}";
                     _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                        "Input.dispatchKeyEvent",
-                        args
-                    );
+                            "Input.dispatchKeyEvent",
+                            args
+                        );
                     index = 0;
                 }
                 else
                 {
-                    index = index + 1;
+                    index++;
                 }
 
                 if(!Globals.godMode)
@@ -101,7 +113,7 @@ namespace NitroTypeHack2
 
             if (Globals.autoGame)
             {
-                await Task.Delay(gen.Next(4900, 6100));
+                await Task.Delay(gen.Next(5000, 6500));
                 webview2.Reload();
             }
 

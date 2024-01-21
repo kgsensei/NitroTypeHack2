@@ -7,55 +7,179 @@
         xmlns:Wpf="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
         x:Class="NitroTypeHack2.MainWindow"
         mc:Ignorable="d"
-        Title="NitroType Cheat 4.3 | kgsensei"
+        Title="NitroType Cheat 4.4 | kgsensei"
         WindowState="Maximized"
         Height="450"
-        Width="800">
+        Width="800"
+        MinWidth="750"
+        MinHeight="400"
+    Icon="/logo.png">
     <Grid Background="#FF141419">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="85*" MinWidth="500"/>
-            <ColumnDefinition Width="220" MinWidth="220"/>
+            <ColumnDefinition Width="*" MinWidth="500"/>
+            <ColumnDefinition Width="240" MinWidth="240"/>
         </Grid.ColumnDefinitions>
 
 
-        <Wpf:WebView2 Grid.Column="0" Name="webview2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                Source="https://nitrotype.com" Margin="0,0,0,0" WebMessageReceived="Webview2_WebMessageReceived"/>
+        <Wpf:WebView2
+            Grid.Column="0"
+            Name="webview2"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Margin="0,0,0,0"
+            WebMessageReceived="Webview2_WebMessageReceived"/>
 
 
-        <Button Grid.Column="1" Content="Start Cheat" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"
-                Width="200" Height="37" FontSize="16" Click="button_start_cheat" Name="startCheatBtn" Background="#FF1E1E23"
-                Foreground="White" BorderBrush="#FF323237" FontFamily="Arial"/>
+        <Grid Grid.Column="1">
+            <Button
+                Content="Start Cheat"
+                HorizontalAlignment="Left"
+                Margin="10,10,0,0"
+                VerticalAlignment="Top"
+                Width="200"
+                Height="37"
+                FontSize="16"
+                Click="button_start_cheat"
+                Name="startCheatBtn"
+                Background="#FF1E1E23"
+                Foreground="White"
+                BorderBrush="#FF323237"
+                FontFamily="Arial"/>
 
-        <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,52,0,0" VerticalAlignment="Top" Width="200" Value="100"
-                Maximum="350" Minimum="30" ValueChanged="slider_change_speed" Name="cheatTypeSpeedSlider" Panel.ZIndex="99"
-                Foreground="White"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="45"/>
+                </Grid.ColumnDefinitions>
 
-        <Label Grid.Column="1" Content="[Cheat Typing Speed]" HorizontalAlignment="Left" Margin="10,64,0,0" VerticalAlignment="Top"
-                Height="34" Width="200" FontSize="15" Foreground="White"/>
+                <Slider
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    Margin="10,52,0,0"
+                    VerticalAlignment="Top"
+                    Value="100"
+                    Maximum="350"
+                    Minimum="30"
+                    ValueChanged="slider_change_speed"
+                    Name="cheatTypeSpeedSlider"
+                    Panel.ZIndex="99"
+                    Foreground="White"/>
 
+                <Label
+                    Grid.Column="0"
+                    Content="[Words Per Minute Slider]"
+                    HorizontalAlignment="Left"
+                    Margin="10,64,0,0"
+                    VerticalAlignment="Top"
+                    FontSize="14"
+                    Foreground="White"/>
 
-        <Slider Grid.Column="1" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" Width="200" Value="100"
-                Maximum="100" Minimum="0"  x:Name="cheatTypeAccSlider" Panel.ZIndex="99"
-                Foreground="White" ValueChanged="slider_change_accuracy"/>
+                <Label
+                    Name="wpmDisplay"
+                    Grid.Column="1"
+                    Content="~45"
+                    HorizontalAlignment="Left"
+                    Margin="0,45,0,0"
+                    VerticalAlignment="Top"
+                    Width="45"
+                    FontSize="14"
+                    Foreground="White"/>
+            </Grid>
 
-        <Label Grid.Column="1" Content="[Cheat Typing Accuracy]" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top"
-                Height="34" Width="200" FontSize="15" Foreground="White"/>
+            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="45"/>
+                </Grid.ColumnDefinitions>
 
+                <Slider
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    Margin="10,98,0,0"
+                    VerticalAlignment="Top"
+                    Value="100"
+                    Maximum="100"
+                    Minimum="0"
+                    x:Name="cheatTypeAccSlider"
+                    Panel.ZIndex="99"
+                    Foreground="White"
+                    ValueChanged="slider_change_accuracy"/>
 
-        <CheckBox Grid.Column="1" Content="Auto Start" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top"
-                    Height="40" Width="200" FontSize="16" Background="#FF646469" BorderBrush="#FF28282D" Foreground="White" IsChecked="True"
-                    Checked="button_AutoStartOn" Unchecked="button_AutoStartOff"/>
+                <Label
+                    Grid.Column="0"
+                    Content="[Typing Accuracy]"
+                    HorizontalAlignment="Left"
+                    Margin="10,110,0,0"
+                    VerticalAlignment="Top"
+                    FontSize="14"
+                    Foreground="White"/>
 
-        <CheckBox Grid.Column="1" Content="God Mode" HorizontalAlignment="Left" Margin="10,215,0,0" VerticalAlignment="Top"
-                Height="40" Width="200" FontSize="16" Background="#FF646469" Name="button_GodMode"
-                  BorderBrush="#FF28282D" Foreground="White" Checked="button_GodModeEnabled" Unchecked="button_GodModeDisabled"/>
+                <Label
+                    Name="accDisplay"
+                    Grid.Column="1"
+                    Content="100%"
+                    HorizontalAlignment="Left"
+                    Margin="0,91,0,0"
+                    VerticalAlignment="Top"
+                    Width="45"
+                    FontSize="14"
+                    Foreground="White"/>
+            </Grid>
 
-        <CheckBox Grid.Column="1" Content="Auto Game" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top"
-                Height="40" Width="200" FontSize="16" Background="#FF646469" BorderBrush="#FF28282D" Foreground="White"
-                  Checked="button_AutoGameOn" Unchecked="button_AutoGameOff" Name="button_AutoGame"/>
+            
+            <CheckBox
+                Content="Auto Start"
+                HorizontalAlignment="Left"
+                Margin="10,180,0,0"
+                VerticalAlignment="Top"
+                FontSize="16" Background="#FF646469"
+                BorderBrush="#FF28282D" Foreground="White"
+                IsChecked="True"
+                Checked="button_AutoStartOn"
+                Unchecked="button_AutoStartOff"/>
 
-        <CheckBox Grid.Column="1" Content="Use Nitros" HorizontalAlignment="Center" Margin="0,285,0,0" VerticalAlignment="Top"
-                Height="40" Width="200" FontSize="16" Background="#FF646469" BorderBrush="#FF28282D" Foreground="White"
-                  Checked="button_UseNitrosOn" Unchecked="button_UseNitrosOff" Name="button_UseNitros"/>
+            
+            <CheckBox
+                Content="God Mode"
+                HorizontalAlignment="Left"
+                Margin="10,215,0,0"
+                VerticalAlignment="Top"
+                FontSize="16"
+                Background="#FF646469"
+                Name="button_GodMode"
+                BorderBrush="#FF28282D"
+                Foreground="White"
+                Checked="button_GodModeEnabled"
+                Unchecked="button_GodModeDisabled"/>
+
+            
+            <CheckBox 
+                Content="Auto Game"
+                HorizontalAlignment="Left"
+                Margin="10,250,0,0"
+                VerticalAlignment="Top"
+                FontSize="16"
+                Background="#FF646469"
+                BorderBrush="#FF28282D"
+                Foreground="White"
+                Checked="button_AutoGameOn"
+                Unchecked="button_AutoGameOff"
+                Name="button_AutoGame"/>
+
+            
+            <CheckBox
+                Content="Use Nitros"
+                HorizontalAlignment="Left"
+                Margin="10,285,0,0"
+                VerticalAlignment="Top"
+                FontSize="16"
+                Background="#FF646469"
+                BorderBrush="#FF28282D"
+                Foreground="White"
+                Checked="button_UseNitrosOn"
+                Unchecked="button_UseNitrosOff"
+                Name="button_UseNitros"/>
+        </Grid>
     </Grid>
 </Window>

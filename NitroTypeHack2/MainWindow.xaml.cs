@@ -4,9 +4,18 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Data;
+using Microsoft.Web.WebView2.Core.DevToolsProtocolExtension;
 
 namespace NitroTypeHack2
 {
+    class Updater
+    {
+        public static string version_code = "4.4";
+    }
+
     /// <summary>
     /// Variables in the cheat that need to be referenced everywhere.
     /// </summary>
@@ -38,30 +47,81 @@ namespace NitroTypeHack2
         // Main Window start function.
         public MainWindow()
         {
+            try
+            {
+                _ = CoreWebView2Environment.GetAvailableBrowserVersionString();
+            }
+            catch (WebView2RuntimeNotFoundException)
+            {
+                MessageBox.Show(
+                    "You don't have the Microsoft WebView2 Component installed.\nThis is a requirement to run the cheat.\nPlease install it then run the cheat again.", "Critical Error", MessageBoxButton.OK);
+                this.Close();
+            }
+
+
             InitializeComponent();
             AsyncInitialize();
-            var httpWebRequest = (HttpWebRequest)WebRequest.Create("https://rainydais.com/software.php");
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Method = "POST";
-            httpWebRequest.Headers.Add("origin", "https://kgsensei.dev");
 
-            using (var streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            var softwareRequest = (HttpWebRequest)WebRequest.Create("https://analytics.kgsensei.dev/api/software");
+            softwareRequest.ContentType = "application/json";
+            softwareRequest.Method = "POST";
+            softwareRequest.Headers.Add("origin", "https://kgsensei.dev");
+
+            using (var streamWriter = new StreamWriter(softwareRequest.GetRequestStream()))
             {
                 string json = "{\"project\":\"NitroTypeHack2\"}";
 
                 streamWriter.Write(json);
             }
 
-            var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+            _ = (HttpWebResponse)softwareRequest.GetResponse();
         }
 
         // Async start, for fancy stuff.
         public async void AsyncInitialize()
         {
-            await webview2.EnsureCoreWebView2Async();
+            CoreWebView2EnvironmentOptions coreWebView2EnvironmentOptions = new CoreWebView2EnvironmentOptions();
+            coreWebView2EnvironmentOptions.AreBrowserExtensionsEnabled = true;
+
+            var webViewEnvOptions = await CoreWebView2Environment.CreateAsync(null, null, coreWebView2EnvironmentOptions);
+
+            await webview2.EnsureCoreWebView2Async(webViewEnvOptions);
+
+            // Injects the auto-captcha extension into the browser
+            await webview2.CoreWebView2.Profile.AddBrowserExtensionAsync(System.IO.Directory.GetCurrentDirectory() + @"\extensions\hlifkpholllijblknnmbfagnkjneagid");
+
             webview2.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
             webview2.CoreWebView2.AddWebResourceRequestedFilter(null, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceContext.All);
             webview2.CoreWebView2.WebResourceResponseReceived += CoreWebView2_WebResourceResponseReceived;
+
+            webview2.Source = new Uri("https://nitrotype.com");
+
+            // Check for updates, if one exists then make a popup
+            // message prompting the user to upgrade their client
+            HttpClient httpClient = new HttpClient();
+            var req = new HttpRequestMessage()
+            {
+                RequestUri = new Uri("https://api.github.com/repos/kgsensei/NitroTypeHack2/releases/latest"),
+                Method = HttpMethod.Get
+            };
+            req.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            req.Headers.UserAgent.Add(new ProductInfoHeaderValue("nth-version-checker", "4.4.0"));
+            var res = await httpClient.SendAsync(req);
+
+            res.EnsureSuccessStatusCode();
+
+            var json = await res.Content.ReadAsStringAsync();
+            var ver = json.Split(':')[42].Split('"')[1];
+            if(ver != Updater.version_code)
+            {
+                if(MessageBox.Show(
+                    $"New update available!\nCurrent version v{Updater.version_code} | New version v{ver}\nWould you like to install it now?",
+                    "Update Available",
+                    MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    System.Diagnostics.Process.Start("https://github.com/kgsensei/NitroTypeHack2/releases/latest");
+                }
+            }
         }
 
         // On button click start the cheat.
@@ -94,6 +154,10 @@ namespace NitroTypeHack2
                 int change = Convert.ToInt32(e.NewValue);
                 int total = Convert.ToInt32(cheatTypeSpeedSlider.Maximum + cheatTypeSpeedSlider.Minimum);
                 Globals.typingSpeed = total - change;
+                if(wpmDisplay != null)
+                {
+                    wpmDisplay.Content = "~" + (int)(60 / ((double)Globals.typingSpeed / 1000) / 5);
+                }
             }
         }
 
@@ -104,6 +168,10 @@ namespace NitroTypeHack2
             if(!Globals.godMode && !App.isCheatRunning)
             {
                 Globals.accuracyLevel = Convert.ToInt32(e.NewValue);
+                if(accDisplay != null)
+                {
+                    accDisplay.Content = Globals.accuracyLevel + "%";
+                }
             }
         }
 
@@ -147,9 +215,12 @@ namespace NitroTypeHack2
             {
                 Globals.autoStart = true;
                 startCheatBtn.IsEnabled = false;
-                if (webview2.Source.ToString().IndexOf("nitrotype.com/race") != -1)
+                if(webview2.Source != null)
                 {
-                    injectAutoStartScript();
+                    if (webview2.Source.ToString().IndexOf("nitrotype.com/race") != -1)
+                    {
+                        injectAutoStartScript();
+                    }
                 }
             }
         }
@@ -208,13 +279,18 @@ namespace NitroTypeHack2
         {
             var r = new Random();
             string funcName = new String(Enumerable.Range(0, 25).Select(n => (Char)(r.Next(65, 90))).ToArray());
+            string contName = new String(Enumerable.Range(0, 25).Select(n => (Char)(r.Next(65, 90))).ToArray());
             webview2.ExecuteScriptAsync(@"
+                var " + contName + @"=0
                 function " + funcName + @"(){
                     if(document.getElementsByClassName('raceChat').length?false:true){
                         z=document.getElementsByClassName('dash-letter');
                         m='';for(let i=0;i<z.length;i++){m=m+z[i].innerText};
                         window.chrome.webview.postMessage(''+m);
-                    }else{setTimeout(()=>{" + funcName + @"()},10);}
+                    }else{
+                        " + contName + @"+=1
+                        if(" + contName + @">=18000){window.location.reload()}
+                        setTimeout(()=>{" + funcName + @"()},10);}
                 };setTimeout(()=>{" + funcName + @"()},2000);");
         }
 
