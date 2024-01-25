@@ -167,7 +167,7 @@
                 Unchecked="button_AutoGameOff"
                 Name="button_AutoGame"/>
 
-            
+
             <CheckBox
                 Content="Use Nitros"
                 HorizontalAlignment="Left"

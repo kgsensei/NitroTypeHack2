@@ -7,7 +7,6 @@ using System.Windows;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Data;
-using Microsoft.Web.WebView2.Core.DevToolsProtocolExtension;
 
 namespace NitroTypeHack2
 {
@@ -278,20 +277,25 @@ namespace NitroTypeHack2
         private void injectAutoStartScript()
         {
             var r = new Random();
-            string funcName = new String(Enumerable.Range(0, 25).Select(n => (Char)(r.Next(65, 90))).ToArray());
-            string contName = new String(Enumerable.Range(0, 25).Select(n => (Char)(r.Next(65, 90))).ToArray());
-            webview2.ExecuteScriptAsync(@"
-                var " + contName + @"=0
-                function " + funcName + @"(){
-                    if(document.getElementsByClassName('raceChat').length?false:true){
-                        z=document.getElementsByClassName('dash-letter');
-                        m='';for(let i=0;i<z.length;i++){m=m+z[i].innerText};
-                        window.chrome.webview.postMessage(''+m);
-                    }else{
-                        " + contName + @"+=1
-                        if(" + contName + @">=18000){window.location.reload()}
-                        setTimeout(()=>{" + funcName + @"()},10);}
-                };setTimeout(()=>{" + funcName + @"()},2000);");
+            string funcName = new String(Enumerable.Range(0, 25).Select(n => (Char)r.Next(65, 90)).ToArray());
+            string contName = new String(Enumerable.Range(0, 25).Select(n => (Char)r.Next(65, 90)).ToArray());
+            webview2.ExecuteScriptAsync(contName + @" = 0;
+                function " + funcName + @"() {
+                    if(document.getElementsByClassName('raceChat').length ? false : true) {
+                        let z = document.getElementsByClassName('dash-letter');
+                        let m = '';
+                        for(let i = 0; i < z.length; i++) {m = m + z[i].innerText};
+                        window.chrome.webview.postMessage('' + m);
+                    } else {
+                        " + contName + @"++;
+                        if(" + contName + @" > 12000) {
+                            window.location.reload();
+                        } else {
+                            setTimeout(() => {" + funcName + @"()}, 10);
+                        }
+                    }
+                }
+                setTimeout(() => {" + funcName + @"()}, 2000);");
         }
 
         // Detect if cheat should start running.

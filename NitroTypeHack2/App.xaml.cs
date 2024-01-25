@@ -107,7 +107,7 @@ namespace NitroTypeHack2
 
                 if(!Globals.godMode)
                 {
-                    await Task.Delay((int)(Math.Sin(index) + typingDelay));
+                    await Task.Delay((int)(Math.Sin(index) * 10 + typingDelay));
                 }
             }
 
