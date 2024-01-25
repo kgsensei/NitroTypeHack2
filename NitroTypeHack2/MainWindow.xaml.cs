@@ -272,6 +272,11 @@ namespace NitroTypeHack2
             }
         }
 
+        private void button_ReportBug(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://rainydais.com/bugreport?app=NitroType%20Hack%20v2");
+        }
+
         // Inject a script that will auto start the cheat.
         private void injectAutoStartScript()
         {

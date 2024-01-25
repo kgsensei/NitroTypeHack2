@@ -31,12 +31,16 @@
 
 
         <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+                
             <Button
                 Content="Start Cheat"
-                HorizontalAlignment="Left"
-                Margin="10,10,0,0"
+                HorizontalAlignment="Stretch"
+                Margin="10,10,10,0"
                 VerticalAlignment="Top"
-                Width="200"
                 Height="37"
                 FontSize="16"
                 Click="button_start_cheat"
@@ -180,6 +184,21 @@
                 Checked="button_UseNitrosOn"
                 Unchecked="button_UseNitrosOff"
                 Name="button_UseNitros"/>
+
+            <Button
+                Grid.Row="1"
+                HorizontalAlignment="Stretch"
+                Margin="10,10,10,10"
+                VerticalAlignment="Top"
+                FontSize="16"
+                Height="30"
+                Background="#FF1E1E23"
+                Foreground="White"
+                BorderBrush="#FF323237"
+                FontFamily="Arial"
+                Click="button_ReportBug">
+                Report Bug
+            </Button>
         </Grid>
     </Grid>
 </Window>
