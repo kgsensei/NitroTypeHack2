@@ -57,7 +57,6 @@ namespace NitroTypeHack2
                 this.Close();
             }
 
-
             InitializeComponent();
             AsyncInitialize();
 

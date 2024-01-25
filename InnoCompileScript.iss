@@ -2,11 +2,11 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "NitroType AutoTyper"
-#define MyAppVersion "4.3"
+#define MyAppVersion "4.4"
 #define MyAppPublisher "kgsensei"
 #define MyAppURL "https://github.com/kgsensei/NitroTypeHack2"
 #define MyAppExeName "NitroType2.exe"
-#define MyAppIcoName "favicon.ico"
+#define MyAppIcoName "logo.ico"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
