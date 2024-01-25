@@ -14,15 +14,14 @@
 
 ## Help/Support
 
-The Java rewrite source code can be found here: [**here**](https://github.com/kgsensei/NitroTypeHack2/tree/JavaRewrite), **IT IS NOT FINISHED**
-
 If you need help with anything or you want to report a feature that is broken/request a new feature...  
 You can join my help discord server [**here**](https://link.kgsensei.dev/discord).  
-You can also create a new GitHub issue [**here**](https://github.com/kgsensei/NitroTypeHack2/issues).
+You can also create a support ticked on my official bug report page [**here**](https://rainydais.com/bugreport?app=NitroType%20Hack%20v2).  
+Or create a new GitHub issue [**here**](https://github.com/kgsensei/NitroTypeHack2/issues).
 
 ## Features/Advantages
 
-- 320+ Daily Users
+- 580+ Daily Users
 - Currently Being Developed
 - Free & Open Source
 - Easy to Setup & Run
@@ -32,19 +31,18 @@ You can also create a new GitHub issue [**here**](https://github.com/kgsensei/Ni
 - God Mode Option
 - Auto New Game Feature
 - Runs in Background
-- Captcha Evasion (Might get Patched)
-- Random Variations (to Act Like a Human While Botting)
+- Captcha Evasion
 
-Can reach **~33,000** WPM at **~100%** Accuracy*.
+Can reach **~12,000** WPM at **~100%** Accuracy*.
 
 ## Screenshots
 
 <img src="/screenshots/1.png" width="75%">
-Preview of Cheat Interface
+Preview of Cheat Interface (More than a year old)
 
 
 <img src="/screenshots/2.png" width="75%">
-Preview of Cheat Capabilities
+Preview of Cheat Capabilities (More than a year old)
 
 ## Legal
 
