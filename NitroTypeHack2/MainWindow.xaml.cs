@@ -127,7 +127,10 @@ namespace NitroTypeHack2
             object sender,
             RoutedEventArgs e)
         {
-            if (webview2.Source.ToString().IndexOf("nitrotype.com/race") != -1 && Globals.autoStart == false)
+            if (
+                webview2.Source.ToString().IndexOf("nitrotype.com/race") != -1 &&
+                webview2.Source.ToString().IndexOf("nitrotype.com/racer/") == -1 &&
+                Globals.autoStart == false)
             {
                 await webview2.ExecuteScriptAsync(@"
                     if(document.getElementsByClassName('raceChat').length?false:true){
@@ -215,7 +218,10 @@ namespace NitroTypeHack2
                 startCheatBtn.IsEnabled = false;
                 if(webview2.Source != null)
                 {
-                    if (webview2.Source.ToString().IndexOf("nitrotype.com/race") != -1)
+                    // Verify that we're actually in a race and not viewing a public racer profile
+                    if (
+                        webview2.Source.ToString().IndexOf("nitrotype.com/race") != -1 &&
+                        webview2.Source.ToString().IndexOf("nitrotype.com/racer/") == -1)
                     {
                         injectAutoStartScript();
                     }
@@ -327,7 +333,10 @@ namespace NitroTypeHack2
             object sender,
             CoreWebView2WebResourceResponseReceivedEventArgs e)
         {
-            if (e.Request.Uri.IndexOf("nitrotype.com/race") != -1 && Globals.autoStart)
+            if (
+                e.Request.Uri.IndexOf("nitrotype.com/race") != -1 &&
+                e.Request.Uri.IndexOf("nitrotype.com/racer/") == -1 &&
+                Globals.autoStart)
             {
                 injectAutoStartScript();
             }
