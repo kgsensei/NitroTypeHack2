@@ -6,7 +6,7 @@
 
 [**Video Tutorial**](https://www.youtube.com/watch?v=mI1olzudF4k)
 
-1. Click this [**link**](/releases/latest).
+1. Click this [**link**](https://github.com/kgsensei/NitroTypeHack2/releases/latest).
 2. Click on the button that says `nitroTypeInstaller.exe`.
 3. Click run the installer you downloaded.
 4. Open up the cheat application.
