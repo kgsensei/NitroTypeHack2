@@ -12,7 +12,7 @@ namespace NitroTypeHack2
 {
     class Updater
     {
-        public static string version_code = "4.4";
+        public static string version_code = "4.5";
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ namespace NitroTypeHack2
     /// </summary>
     class Messages
     {
-        public static string title = "NitroType Cheat 4 - kgsensei";
+        public static string title = "NitroType Cheat 5 - kgsensei";
         public static string err_game_not_started = "The game hasn't started yet.";
         public static string err_enter_a_race = "Enter a race to use the cheat.";
     }
@@ -46,6 +46,7 @@ namespace NitroTypeHack2
         // Main Window start function.
         public MainWindow()
         {
+            AppDomain.CurrentDomain.UnhandledException += OnDispatcherUnhandledException;
             try
             {
                 _ = CoreWebView2Environment.GetAvailableBrowserVersionString();
@@ -85,12 +86,26 @@ namespace NitroTypeHack2
 
             await webview2.EnsureCoreWebView2Async(webViewEnvOptions);
 
-            // Injects the auto-captcha extension into the browser
-            await webview2.CoreWebView2.Profile.AddBrowserExtensionAsync(System.IO.Directory.GetCurrentDirectory() + @"\extensions\hlifkpholllijblknnmbfagnkjneagid");
+            try
+            {
+                // Injects the auto-captcha extension into the browser
+                await webview2.CoreWebView2.Profile.AddBrowserExtensionAsync(System.IO.Directory.GetCurrentDirectory() + @"\extensions\hlifkpholllijblknnmbfagnkjneagid");
+            } catch (Exception)
+            {
+                MessageBox.Show("Error occured when trying to inject the captcha solver.", "Critical Error", MessageBoxButton.OK);
+                this.Close();
+            }
 
-            webview2.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
-            webview2.CoreWebView2.AddWebResourceRequestedFilter(null, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceContext.All);
-            webview2.CoreWebView2.WebResourceResponseReceived += CoreWebView2_WebResourceResponseReceived;
+            try
+            {
+                webview2.CoreWebView2.WebResourceRequested += CoreWebView2_WebResourceRequested;
+                webview2.CoreWebView2.AddWebResourceRequestedFilter(null, Microsoft.Web.WebView2.Core.CoreWebView2WebResourceContext.All);
+                webview2.CoreWebView2.WebResourceResponseReceived += CoreWebView2_WebResourceResponseReceived;
+            } catch (Exception)
+            {
+                MessageBox.Show("Error occured when trying to setup the request filters.", "Critical Error", MessageBoxButton.OK);
+                this.Close();
+            }
 
             webview2.Source = new Uri("https://nitrotype.com");
 
@@ -103,7 +118,7 @@ namespace NitroTypeHack2
                 Method = HttpMethod.Get
             };
             req.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            req.Headers.UserAgent.Add(new ProductInfoHeaderValue("nth-version-checker", "4.4.0"));
+            req.Headers.UserAgent.Add(new ProductInfoHeaderValue("nth-version-checker", "4.5.0"));
             var res = await httpClient.SendAsync(req);
 
             res.EnsureSuccessStatusCode();
@@ -133,11 +148,16 @@ namespace NitroTypeHack2
                 Globals.autoStart == false)
             {
                 await webview2.ExecuteScriptAsync(@"
-                    if(document.getElementsByClassName('raceChat').length?false:true){
-                        z=document.getElementsByClassName('dash-letter');
-                        m='';for(let i=0;i<z.length;i++){m=m+z[i].innerText};
-                        window.chrome.webview.postMessage(''+m);
-                    }else{window.chrome.webview.postMessage('GAME_NOT_STARTED_ERROR');}");
+                    if(document.getElementsByClassName('raceChat').length ? false : true) {
+                        z = document.getElementsByClassName('dash-letter');
+                        m = '';
+                        for(let i = 0 ; i < z.length; i++) {
+                            m = m + z[i].innerText
+                        };
+                        window.chrome.webview.postMessage('' + m);
+                    } else {
+                        window.chrome.webview.postMessage('GAME_NOT_STARTED_ERROR');
+                    }");
             }
             else
             {
@@ -298,7 +318,7 @@ namespace NitroTypeHack2
                         window.chrome.webview.postMessage('' + m);
                     } else {
                         " + contName + @"++;
-                        if(" + contName + @" > 12000) {
+                        if(" + contName + @" > 6000) {
                             window.location.reload();
                         } else {
                             setTimeout(() => {" + funcName + @"()}, 10);
@@ -369,6 +389,11 @@ namespace NitroTypeHack2
             {
                 e.Response = webview2.CoreWebView2.Environment.CreateWebResourceResponse(null, 404, "Not Found", null);
             }
+        }
+
+        private void OnDispatcherUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show("Unhandled exception occurred: \n" + e.ToString(), "Critical Error", MessageBoxButton.OK);
         }
     }
 }
