@@ -22,6 +22,7 @@ namespace NitroTypeHack2
     {
         public static int typingSpeed { get; set; } = 5;
         public static int accuracyLevel { get; set; } = 100;
+        public static int accuracyLevelVary { get; set; } = 0;
         public static bool godMode { get; set; } = false;
         public static bool autoStart { get; set; } = true;
         public static bool autoGame { get; set; } = false;
@@ -192,6 +193,20 @@ namespace NitroTypeHack2
                 if(accDisplay != null)
                 {
                     accDisplay.Content = Globals.accuracyLevel + "%";
+                }
+            }
+        }
+
+        private void slider_change_accuracy_vary(
+            object sender,
+            RoutedPropertyChangedEventArgs<double> e)
+        {
+            if(!Globals.godMode && !App.isCheatRunning)
+            {
+                Globals.accuracyLevelVary = Convert.ToInt32(e.NewValue);
+                if(accVaryDisplay != null)
+                {
+                    accVaryDisplay.Content = "±" + Globals.accuracyLevelVary;
                 }
             }
         }

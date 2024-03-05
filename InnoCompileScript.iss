@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "NitroType AutoTyper"
-#define MyAppVersion "4.4"
+#define MyAppVersion "4.5"
 #define MyAppPublisher "kgsensei"
 #define MyAppURL "https://github.com/kgsensei/NitroTypeHack2"
 #define MyAppExeName "NitroType2.exe"

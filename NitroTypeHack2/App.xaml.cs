@@ -8,6 +8,7 @@ namespace NitroTypeHack2
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
+
     public partial class App : Application
     {
         public static bool isCheatRunning = false;
@@ -28,10 +29,16 @@ namespace NitroTypeHack2
                 text = ReplaceFirst(text, longest, "ʜ");
             }
 
-            char[] letters = text.Replace("\u00A0", " ").ToCharArray();
             var gen = new Random();
 
-            char[] allowedCharsToMiss = { '+', '-', '=', '[', ']', '<', '>', '`', '~' };
+            if (Globals.accuracyLevelVary > 0)
+            {
+                accuracy += gen.Next(-Globals.accuracyLevelVary, Globals.accuracyLevelVary);
+                if(accuracy > 100) accuracy = 100;
+            }
+
+            char[] letters = text.Replace("\u00A0", " ").ToCharArray();
+            char[] allowedCharsToMiss = { '+', '-', '=' };
 
             int toMiss = (int)Math.Floor(letters.Length * ((decimal)(100 - accuracy) / 100));
             int maxIndex = (int)Math.Floor(letters.Length / (decimal)(toMiss + 1));
@@ -105,10 +112,7 @@ namespace NitroTypeHack2
                     index++;
                 }
 
-                if(!Globals.godMode)
-                {
-                    await Task.Delay((int)(Math.Sin(index) * 10 + typingDelay));
-                }
+                if(!Globals.godMode) await Task.Delay((int)(Math.Sin(index) * 10 + typingDelay));
             }
 
             if (Globals.autoGame)

@@ -35,7 +35,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-                
+
             <Button
                 Content="Start Cheat"
                 HorizontalAlignment="Stretch"
@@ -90,7 +90,7 @@
                     Foreground="White"/>
             </Grid>
 
-            
+
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -131,11 +131,51 @@
                     Foreground="White"/>
             </Grid>
 
-            
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="45"/>
+                </Grid.ColumnDefinitions>
+
+                <Slider
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    Margin="10,144,0,0"
+                    VerticalAlignment="Top"
+                    Value="0"
+                    Maximum="15"
+                    Minimum="0"
+                    x:Name="cheatTypeAccVary"
+                    Panel.ZIndex="99"
+                    Foreground="White"
+                    ValueChanged="slider_change_accuracy_vary"/>
+
+                <Label
+                    Grid.Column="0"
+                    Content="[Typing Accuracy Variability]"
+                    HorizontalAlignment="Left"
+                    Margin="10,156,0,0"
+                    VerticalAlignment="Top"
+                    FontSize="14"
+                    Foreground="White"/>
+
+                <Label
+                    Name="accVaryDisplay"
+                    Grid.Column="1"
+                    Content="±0"
+                    HorizontalAlignment="Left"
+                    Margin="0,137,0,0"
+                    VerticalAlignment="Top"
+                    Width="45"
+                    FontSize="14"
+                    Foreground="White"/>
+            </Grid>
+
+
             <CheckBox
                 Content="Auto Start"
                 HorizontalAlignment="Left"
-                Margin="10,180,0,0"
+                Margin="10,200,0,0"
                 VerticalAlignment="Top"
                 FontSize="16" Background="#FF646469"
                 BorderBrush="#FF28282D" Foreground="White"
@@ -143,11 +183,11 @@
                 Checked="button_AutoStartOn"
                 Unchecked="button_AutoStartOff"/>
 
-            
+
             <CheckBox
                 Content="God Mode"
                 HorizontalAlignment="Left"
-                Margin="10,215,0,0"
+                Margin="10,235,0,0"
                 VerticalAlignment="Top"
                 FontSize="16"
                 Background="#FF646469"
@@ -157,11 +197,11 @@
                 Checked="button_GodModeEnabled"
                 Unchecked="button_GodModeDisabled"/>
 
-            
+
             <CheckBox 
                 Content="Auto Game"
                 HorizontalAlignment="Left"
-                Margin="10,250,0,0"
+                Margin="10,270,0,0"
                 VerticalAlignment="Top"
                 FontSize="16"
                 Background="#FF646469"
@@ -175,7 +215,7 @@
             <CheckBox
                 Content="Use Nitros"
                 HorizontalAlignment="Left"
-                Margin="10,285,0,0"
+                Margin="10,305,0,0"
                 VerticalAlignment="Top"
                 FontSize="16"
                 Background="#FF646469"

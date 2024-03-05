@@ -6,3 +6,4 @@ packages/*
 *.iss
 .vs/NitroTypeHack2/v17/.suo
 .vs/NitroTypeHack2/v17/.suo
+InnoCompileScript.iss
