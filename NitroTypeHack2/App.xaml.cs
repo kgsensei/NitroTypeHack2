@@ -117,7 +117,7 @@ namespace NitroTypeHack2
 
             if (Globals.autoGame)
             {
-                await Task.Delay(gen.Next(5000, 6500));
+                await Task.Delay(gen.Next(4900, 5600));
                 webview2.Reload();
             }
 
