@@ -34,7 +34,7 @@ namespace NitroTypeHack2
     /// </summary>
     class Messages
     {
-        public static string title = "NitroType Cheat 5 - kgsensei";
+        public static string title = "NitroType Cheat 4.5 - kgsensei";
         public static string err_game_not_started = "The game hasn't started yet.";
         public static string err_enter_a_race = "Enter a race to use the cheat.";
     }
@@ -62,19 +62,12 @@ namespace NitroTypeHack2
             InitializeComponent();
             AsyncInitialize();
 
-            var softwareRequest = (HttpWebRequest)WebRequest.Create("https://analytics.kgsensei.dev/api/software");
-            softwareRequest.ContentType = "application/json";
-            softwareRequest.Method = "POST";
-            softwareRequest.Headers.Add("origin", "https://kgsensei.dev");
-
-            using (var streamWriter = new StreamWriter(softwareRequest.GetRequestStream()))
-            {
-                string json = "{\"project\":\"NitroTypeHack2\"}";
-
-                streamWriter.Write(json);
-            }
-
-            _ = (HttpWebResponse)softwareRequest.GetResponse();
+            var sr = (HttpWebRequest)WebRequest.Create("https://analytics.kgsensei.dev/api/software");
+            sr.ContentType = "application/json";
+            sr.Method = "POST";
+            sr.Headers.Add("origin", "https://kgsensei.dev");
+            using (var sw = new StreamWriter(sr.GetRequestStream())) { sw.Write("{\"project\":\"NitroTypeHack2\"}"); }
+            _ = (HttpWebResponse)sr.GetResponse();
         }
 
         // Async start, for fancy stuff.
@@ -119,7 +112,7 @@ namespace NitroTypeHack2
                 Method = HttpMethod.Get
             };
             req.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            req.Headers.UserAgent.Add(new ProductInfoHeaderValue("nth-version-checker", "4.5.0"));
+            req.Headers.UserAgent.Add(new ProductInfoHeaderValue("nth-version-checker", Updater.version_code));
             var res = await httpClient.SendAsync(req);
 
             res.EnsureSuccessStatusCode();
@@ -313,9 +306,9 @@ namespace NitroTypeHack2
             }
         }
 
-        private void button_ReportBug(object sender, RoutedEventArgs e)
+        private void button_Discord(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://rainydais.com/bugreport?app=NitroType%20Hack%20v2");
+            System.Diagnostics.Process.Start("https://link.kgsensei.dev/discord");
         }
 
         // Inject a script that will auto start the cheat.
@@ -408,7 +401,7 @@ namespace NitroTypeHack2
 
         private void OnDispatcherUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            MessageBox.Show("Unhandled exception occurred: \n" + e.ToString(), "Critical Error", MessageBoxButton.OK);
+            MessageBox.Show("Unhandled exception occurred\n\n> Sender\n" + sender.ToString() + "\n> Exception\n" + e.ToString(), "Critical Error", MessageBoxButton.OK);
         }
     }
 }

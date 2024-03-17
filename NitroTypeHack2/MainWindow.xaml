@@ -185,17 +185,17 @@
 
 
             <CheckBox
-                Content="God Mode"
+                Content="Use Nitros"
                 HorizontalAlignment="Left"
                 Margin="10,235,0,0"
                 VerticalAlignment="Top"
                 FontSize="16"
                 Background="#FF646469"
-                Name="button_GodMode"
                 BorderBrush="#FF28282D"
                 Foreground="White"
-                Checked="button_GodModeEnabled"
-                Unchecked="button_GodModeDisabled"/>
+                Checked="button_UseNitrosOn"
+                Unchecked="button_UseNitrosOff"
+                Name="button_UseNitros"/>
 
 
             <CheckBox 
@@ -213,17 +213,33 @@
 
 
             <CheckBox
-                Content="Use Nitros"
+                Content="God Mode"
                 HorizontalAlignment="Left"
                 Margin="10,305,0,0"
                 VerticalAlignment="Top"
                 FontSize="16"
                 Background="#FF646469"
+                Name="button_GodMode"
                 BorderBrush="#FF28282D"
                 Foreground="White"
-                Checked="button_UseNitrosOn"
-                Unchecked="button_UseNitrosOff"
-                Name="button_UseNitros"/>
+                Checked="button_GodModeEnabled"
+                Unchecked="button_GodModeDisabled"/>
+
+
+            <Button
+                Grid.Row="1"
+                HorizontalAlignment="Stretch"
+                Margin="10,10,10,10"
+                VerticalAlignment="Top"
+                FontSize="16"
+                Height="30"
+                Background="#FF1E1E23"
+                Foreground="White"
+                BorderBrush="#FF323237"
+                FontFamily="Arial"
+                Click="button_Discord">
+                Discord
+            </Button>
         </Grid>
     </Grid>
 </Window>

@@ -40,11 +40,13 @@ namespace NitroTypeHack2
             char[] letters = text.Replace("\u00A0", " ").ToCharArray();
             char[] allowedCharsToMiss = { '+', '-', '=' };
 
-            int toMiss = (int)Math.Floor(letters.Length * ((decimal)(100 - accuracy) / 100));
-            int maxIndex = (int)Math.Floor(letters.Length / (decimal)(toMiss + 1));
+            int llength = letters.Length;
+
+            int toMiss = (int)Math.Floor(llength * ((decimal)(100 - accuracy) / 100));
+            int maxIndex = (int)Math.Floor(llength / (decimal)(toMiss + 1));
             int index = 0;
 
-            for (int i = 0; i < letters.Length; i++)
+            for (int i = 0; i < llength; i++)
             {
                 char letter = letters[i];
 
