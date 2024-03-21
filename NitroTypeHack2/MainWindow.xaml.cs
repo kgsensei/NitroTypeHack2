@@ -368,6 +368,12 @@ namespace NitroTypeHack2
             {
                 injectAutoStartScript();
             }
+            webview2.ExecuteScriptAsync(@"
+                NTGLOBALS.NO_ADS = true;
+                setInterval(() => {
+                    const tmpx = document.getElementsByClassName('ad');
+                    for (let i = 0; i < tmpx.length; i++) {
+                        tmpx[i].remove();}},100)");
         }
 
         // Ad blocker.
@@ -376,24 +382,20 @@ namespace NitroTypeHack2
             CoreWebView2WebResourceRequestedEventArgs e)
         {
             string uri = e.Request.Uri;
-            if (uri.IndexOf("googlesyndication") != -1 ||
-                uri.IndexOf("adservice") != -1 ||
-                uri.IndexOf("adsystem") != -1 ||
-                uri.IndexOf("adsafeprotected") != -1 ||
-                uri.IndexOf("facebook") != -1 ||
-                uri.IndexOf("googletagmanager") != -1 ||
-                uri.IndexOf("google-analytics") != -1 ||
-                uri.IndexOf("ad-delivery") != -1 ||
-                uri.IndexOf("doubleclick") != -1 ||
-                uri.IndexOf("adlightning") != -1 ||
-                uri.IndexOf("smartadserver") != -1 ||
-                uri.IndexOf("quantserve") != -1 ||
-                uri.IndexOf("qccerttest") != -1 ||
-                uri.IndexOf("qualaroo") != -1 ||
-                uri.IndexOf("criteo") != -1 ||
-                uri.IndexOf("moatads") != -1 ||
-                uri.IndexOf("intergi") != -1 ||
-                uri.IndexOf("playwire") != -1)
+            if (
+                uri.IndexOf("doubleclick.net") != -1 ||
+                uri.IndexOf("vuukle.com") != -1 ||
+                uri.IndexOf("cloudfront.net") != -1 ||
+                uri.IndexOf("proper.io") != -1 ||
+                uri.IndexOf("pub.network") != -1 ||
+                uri.IndexOf("btloader.com") != -1 ||
+                uri.IndexOf("intergient.com") != -1 ||
+                uri.IndexOf("qualaroo.com") != -1 ||
+                uri.IndexOf("facebook.net") != -1 ||
+                uri.IndexOf("facebook.com") != -1 ||
+                uri.IndexOf("googletagmanager.com") != -1 ||
+                uri.IndexOf("cloudflareinsights.com") != -1
+            )
             {
                 e.Response = webview2.CoreWebView2.Environment.CreateWebResourceResponse(null, 404, "Not Found", null);
             }
