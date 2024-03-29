@@ -12,7 +12,7 @@ namespace NitroTypeHack2
 {
     class Updater
     {
-        public static string version_code = "4.5";
+        public static string version_code = "4.5.1";
     }
 
     /// <summary>
@@ -34,7 +34,7 @@ namespace NitroTypeHack2
     /// </summary>
     class Messages
     {
-        public static string title = "NitroType Cheat 4.5 - kgsensei";
+        public static string title = $"NitroType Cheat {Updater.version_code} - kgsensei";
         public static string err_game_not_started = "The game hasn't started yet.";
         public static string err_enter_a_race = "Enter a race to use the cheat.";
     }
@@ -122,7 +122,7 @@ namespace NitroTypeHack2
             if(ver != Updater.version_code)
             {
                 if(MessageBox.Show(
-                    $"New update available!\nCurrent version v{Updater.version_code} | New version v{ver}\nWould you like to install it now?",
+                    $"New update available!\n\nCurrent version v{Updater.version_code}\nNew version v{ver}\n\nWould you like to install it now?",
                     "Update Available",
                     MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
@@ -315,8 +315,8 @@ namespace NitroTypeHack2
         private void injectAutoStartScript()
         {
             var r = new Random();
-            string funcName = new String(Enumerable.Range(0, 25).Select(n => (Char)r.Next(65, 90)).ToArray());
-            string contName = new String(Enumerable.Range(0, 25).Select(n => (Char)r.Next(65, 90)).ToArray());
+            string funcName = new string(Enumerable.Range(0, 25).Select(n => (Char)r.Next(65, 90)).ToArray());
+            string contName = new string(Enumerable.Range(0, 25).Select(n => (Char)r.Next(65, 90)).ToArray());
             webview2.ExecuteScriptAsync(contName + @" = 0;
                 function " + funcName + @"() {
                     if(document.getElementsByClassName('raceChat').length ? false : true) {
@@ -325,21 +325,31 @@ namespace NitroTypeHack2
                         for(let i = 0; i < z.length; i++) {m = m + z[i].innerText};
                         window.chrome.webview.postMessage('' + m);
                     } else {
-                        " + contName + @"++;
-                        if(" + contName + @" > 6000) {
-                            window.location.reload();
-                        } else {
-                            setTimeout(() => {" + funcName + @"()}, 10);
-                        }
+                        setTimeout(() => {" + funcName + @"()}, 10);                    
                     }
                 }
-                setTimeout(() => {" + funcName + @"()}, 2000);");
+                setTimeout(() => {" + funcName + @"()}, 2000);
+                setInterval(() => {
+                    const m = ""Validated! Play on.""
+                    const x = document.querySelector(""h1.tsxxl.mbs"");
+                    const f = Array.from(document.querySelectorAll(""div.tc-i"")).find(l => l.textContent === m);
+                    if(x) {
+                        if(x.textContent === ""Communications Error"") {
+                            window.location.reload()
+                        }
+                    }
+                    if(f) {
+                        if(f.textContent === m) {
+                            window.location.reload()
+                        }
+                    }
+                }, 250);");
         }
 
         // Detect if cheat should start running.
         private void Webview2_WebMessageReceived(
             object sender,
-            Microsoft.Web.WebView2.Core.CoreWebView2WebMessageReceivedEventArgs e)
+            CoreWebView2WebMessageReceivedEventArgs e)
         {
             if (!App.isCheatRunning)
             {
@@ -403,7 +413,7 @@ namespace NitroTypeHack2
 
         private void OnDispatcherUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            MessageBox.Show("Unhandled exception occurred\n\n> Sender\n" + sender.ToString() + "\n> Exception\n" + e.ToString(), "Critical Error", MessageBoxButton.OK);
+            MessageBox.Show("Unhandled exception occurred\n\n> Sender\n" + sender.ToString() + "\n> Exception\n" + e.ExceptionObject.ToString(), "Critical Error", MessageBoxButton.OK);
         }
     }
 }
