@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -38,7 +39,7 @@ namespace NitroTypeHack2
             }
 
             char[] letters = text.Replace("\u00A0", " ").ToCharArray();
-            char[] allowedCharsToMiss = { '+', '-', '=' };
+            char[] allowedCharsToMiss = { '+', '!', '@' };
 
             int llength = letters.Length;
 
@@ -52,19 +53,8 @@ namespace NitroTypeHack2
 
                 if (letter == 'ʜ')
                 {
-                    string args;
-                    args = @"{""type"": ""rawKeyDown"", ""windowsVirtualKeyCode"": 13, ""unmodifiedText"": ""\r"", ""text"": ""\r""}";
-                    _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                            "Input.dispatchKeyEvent",
-                            args
-                        );
-
-                    args = @"{""type"": ""keyUp"", ""windowsVirtualKeyCode"": 13, ""unmodifiedText"": ""\r"", ""text"": ""\r""}";
-                    _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                            "Input.dispatchKeyEvent",
-                            args
-                        );
-
+                    string args = @"{""type"": ""char"", ""windowsVirtualKeyCode"": 13, ""unmodifiedText"": ""\r"", ""text"": ""\r""}";
+                    _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync("Input.dispatchKeyEvent", args);
                     // Do this to avoid the space as next character,
                     // if we press it then the accuracy level will
                     // be offset.
@@ -76,25 +66,33 @@ namespace NitroTypeHack2
                     // Letter 32 is a newline character
                     if (letter == 32)
                     {
-                        args = @"{""type"": ""rawKeyDown"", ""windowsVirtualKeyCode"": 32, ""unmodifiedText"": "" "", ""text"": "" ""}";
-                        _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                                "Input.dispatchKeyEvent",
-                                args
-                            );
-
-                        args = @"{""type"": ""keyUp"", ""windowsVirtualKeyCode"": 32, ""unmodifiedText"": "" "", ""text"": "" ""}";
-                        _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                                "Input.dispatchKeyEvent",
-                                args
-                            );
+                        args = @"{""type"": ""char"", ""windowsVirtualKeyCode"": 32, ""unmodifiedText"": "" "", ""text"": "" ""}";
+                        _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync("Input.dispatchKeyEvent", args);
+                    }
+                    // Letter 34 is a double quote | 39 is a single quote for future reference
+                    else if (letter == 34)
+                    {
+                        var keyboard_layout = GetKeyboardLayout(0);
+                        var virtual_key = VkKeyScanExA(letter, keyboard_layout);
+                        MessageBox.Show(virtual_key.ToString());
+                        args = "{\"type\": \"char\", \"windowsVirtualKeyCode\": 222, \"unmodifiedText\": '\x22', \"text\": '\x22'}";
+                        MessageBox.Show(args);
+                        _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync("Input.dispatchKeyEvent", args);
                     }
                     else
                     {
+                        //var keyboard_layout = GetKeyboardLayout(0);
+                        //var virtual_key = VkKeyScanExA(letter, keyboard_layout);
+                        //args = @"{""type"": ""char"", ""windowsVirtualKeyCode: " + virtual_key + @", unmodifiedText"": """ + letter + @""", ""text"": """ + letter + @"""}";
                         args = @"{""type"": ""char"", ""text"": """ + letter + @"""}";
-                        _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                                "Input.dispatchKeyEvent",
-                                args
-                            );
+                        try
+                        {
+                            _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync("Input.dispatchKeyEvent", args);
+                        }
+                        catch ( Exception e )
+                        {
+                            MessageBox.Show($"Input.insertText Args >_\n{args}\n\nError in App.xaml.cs 76 >_\n{e.Message}");
+                        }
                     }
                 }
 
@@ -103,10 +101,7 @@ namespace NitroTypeHack2
                     // This will get one of the random 'allowed to miss' characters,
                     // that way we aren't using the same one for every miss.
                     string args = @"{""type"": ""char"", ""text"": """ + allowedCharsToMiss[gen.Next(0, allowedCharsToMiss.Length - 1)] + @"""}";
-                    _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync(
-                            "Input.dispatchKeyEvent",
-                            args
-                        );
+                    _ = await webview2.CoreWebView2.CallDevToolsProtocolMethodAsync("Input.dispatchKeyEvent", args);
                     index = 0;
                 }
                 else
@@ -125,6 +120,12 @@ namespace NitroTypeHack2
 
             isCheatRunning = false;
         }
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        private static extern short VkKeyScanExA(char ch, int dwhkl);
+
+        [DllImport("user32.dll")]
+        private static extern short GetKeyboardLayout(int idThread);
 
         public static string ReplaceFirst(string input, string find, string replace)
         {

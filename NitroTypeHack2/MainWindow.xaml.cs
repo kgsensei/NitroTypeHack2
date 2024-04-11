@@ -7,6 +7,7 @@ using System.Windows;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Data;
+using System.Diagnostics.Metrics;
 
 namespace NitroTypeHack2
 {
@@ -308,7 +309,9 @@ namespace NitroTypeHack2
 
         private void button_Discord(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://link.kgsensei.dev/discord");
+            //System.Diagnostics.Process.Start("https://link.kgsensei.dev/discord");
+            string args = @"{""text"": ""The""}";
+            webview2.CoreWebView2.CallDevToolsProtocolMethodAsync("Input.insertText", args);
         }
 
         // Inject a script that will auto start the cheat.
