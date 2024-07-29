@@ -6,7 +6,7 @@
 		<title>NitroType Cheats</title>
 
 		<meta name="description" content="Official homepage for the Premier NitroType Cheating Application.">
-        <meta name="keywords" content="kgsensei, developer, homepage, github, nitrotype, cheats, application">
+        <meta name="keywords" content="kgsensei, developer, github, nitrotype, cheats, application">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="kgsensei">
 		<meta name="url" content="https://nt.kgsensei.dev">
@@ -26,72 +26,132 @@
 		<script async src="https://kgsensei.dev/js/ka.js"></script>
 
         <style>
+            @import url('https://fonts.googleapis.com/css?family=Noto%20Sans%20Hanunoo:700|Arimo:400');
+
             :root {
-                --kg-bg: rgb(40, 8, 8);
-                --kg-fg: rgb(235, 235, 235);
-                --kg-fg-darker: rgb(190, 190, 190);
+                --kg-bg: #0c0009;
+                --kg-fg: #ebe9fc;
+                --kg-fg-darker: #a10056;
 
-                --kg-primary: #d42e3b;
-                --kg-secondary: #FFCE42;
+                --kg-primary: #ad008a;
+                --kg-secondary: #8d009a;
 
-                --kg-font: Helvetica, sans-serif;
+                --kg-font: 'Arimo';
+            }
+
+            body {
+                font-family: 'Arimo';
+                font-weight: 400;
+            }
+
+            h1, h2, h3, h4, h5 {
+                font-family: 'Noto Sans Hanunoo' !important;
+                font-weight: 700 !important;
+            }
+
+            .secondary {
+                --th-color: var(--kg-secondary);
+            }
+
+            #header {
+                background-color: #24001b;
+                position: absolute;
+                height: 60px;
+                padding: 5px;
+                width: 100%;
+                top: 0px;
+            }
+
+            #header img {
+                height: 100%;
+                display: inline-block;
+            }
+
+            #header h1 {
+                display: inline-block;
+                transform: translateY(-50%);
+            }
+
+            .mw-300 {
+                min-width: 300px;
+            }
+
+            .flex-wrap {
+                flex-wrap: wrap;
             }
         </style>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kgsensei/devtools@1.1/custom.min.css">
-		<link rel="stylesheet" href="./css/index.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kgsensei/devtools@1.1.1/custom.min.css">
 		<link rel="icon" href="./favicon.ico">
 	</head>
 	<body>
         <div id="header">
-            <img id="ia-ig" src="./logo.png" alt="NitroType Tool Logo">
-            <h1>NTH2v5</h1>
+            <img src="./logo.png" alt="NitroType Tool Logo">
+            <h1 class="h4">NitroType Cheat v2</h1>
         </div>
-        <div class="d-grid center mt-8 mb-7">
+        <div class="d-grid center my-8 pt-2">
             <h1 class="h1">NitroType Cheat v2</h1>
-            <h2 class="h2">The Premier NitroType Cheat</h2>
+            <h2 class="h3">The Premier NitroType Cheat</h2>
         </div>
-        <div class="d-flex center mb-7">
-            <div class="border border-1 radius-2 p-2 m-2">
+        <div class="d-flex flex-wrap center mb-7 w-100">
+            <div class="border border-1 radius-2 p-2 m-2 mw-300">
                 <h2>700+ Daily Users</h2>
             </div>
-            <div class="border border-1 radius-2 p-2 m-2">
-                <h2>70,000+ Launches</h2>
+            <div class="border border-1 radius-2 p-2 m-2 mw-300">
+                <h2>125,000+ Launches</h2>
             </div>
-            <div class="border border-1 radius-2 p-2 m-2">
-                <h2>~3,000,000+ Races</h2>
+            <div class="border border-1 radius-2 p-2 m-2 mw-300">
+                <h2>~10,000,000+ Races</h2>
             </div>
         </div>
         <hr class="w-50">
-        <div class="h3 center m-3">Enough flexing. What can it <i>do?</i></div>
+        <div class="h4 center m-3">Enough flexing. What can it <i>do?</i></div>
         <hr class="w-50 mb-7">
-        <div class="d-flex center mb-7">
-            <div class="border border-1 radius-2 p-2 m-2">
+        <div class="d-flex flex-wrap center mb-7 mx-6">
+            <div class="border border-1 radius-2 p-2 m-2 mw-300">
                 <h2>Captcha Evasion</h2>
+                <p class="fs-2">
+                    Automatically solves captchas and continues racing.
+                </p>
             </div>
-            <div class="border border-1 radius-2 p-2 m-2">
+            <div class="border border-1 radius-2 p-2 m-2 mw-300">
                 <h2>Auto New Game</h2>
+                <p class="fs-2">
+                    Starts new games by itself.
+                </p>
             </div>
-            <div class="border border-1 radius-2 p-2 m-2">
+            <div class="border border-1 radius-2 p-2 m-2 mw-300">
                 <h2>Auto Start Race</h2>
+                <p class="fs-2">
+                    Automatically starts typing right after the race starts.
+                </p>
             </div>
-            <div class="border border-1 radius-2 p-2 m-2">
-                <h2>Undetectable*</h2>
+            <div class="border border-1 radius-2 p-2 m-2 mw-300">
+                <h2>Accuracy Randomization</h2>
+                <p class="fs-2">
+                    Customize how the accuracy changes between races.
+                </p>
+            </div>
+            <div class="border border-1 radius-2 p-2 m-2 mw-300">
+                <h2>Undetectable</h2>
+                <p class="fs-2">
+                    [See disclaimer]
+                </p>
             </div>
         </div>
         <hr class="w-50">
-        <div class="h3 center m-3">Good enough for you?</div>
+        <div class="h4 center m-3">Good enough for you?</div>
         <hr class="w-50 mb-7">
-        <div class="d-flex center mb-7">
+        <div class="d-flex flex-wrap center mb-7">
             <a
                 target="_blank"
                 href="https://github.com/kgsensei/NitroTypeHack2/releases/latest"
-                class="btn btn-outline btn-lg primary p-2">Download for Windows</a>
+                class="btn btn-outline btn-lg h4 primary p-2 m-1">Download for Windows</a>
             <a
                 target="_blank"
                 href="https://github.com/kgsensei/NitroTypeHack2/tree/main/NitroTypeHack2"
-                class="btn btn-outline btn-lg secondary p-2">Access Source Code</a>
+                class="btn btn-outline btn-lg h4 secondary p-2 m-1">Access Source Code</a>
         </div>
-        <div class="center mb-3 mx-6" style="font-style:italic;">
+        <div class="center mb-3 mx-3" style="font-style:italic;">
             *The tool itself is undetectable, however, failure to use it in moderation/within
             a safe limit can cause detection and lead to account ban.<br><br>We do not take
             responsibility for your actions, this includes activity that can lead to a NitroType
