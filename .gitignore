@@ -6,3 +6,5 @@ packages/*
 *.iss
 .vs/
 InnoCompileScript.iss
+/NitroType3/bin
+/NitroType3/obj
