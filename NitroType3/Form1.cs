@@ -119,6 +119,35 @@ namespace NitroType3
             System.Diagnostics.Process.Start("explorer.exe", "https://link.kgsensei.dev/discord");
         }
 
+        private async void UI_Click_Start(object sender, EventArgs e)
+        {
+            Logger.Log("Manual Start Clicked");
+            if ( webView.Source.AbsolutePath == "/race" && !Config.AutoStart )
+            {
+                await webView.ExecuteScriptAsync(
+                    @"if(document.getElementsByClassName('raceChat').length ? false : true) {
+                        z = document.getElementsByClassName('dash-letter');
+                        m = '';
+                        for(let i = 0 ; i < z.length; i++) {
+                            m = m + z[i].innerText
+                        };
+                        window.chrome.webview.postMessage('' + m);
+                    } else {
+                        window.chrome.webview.postMessage('GAME_NOT_STARTED_ERROR');
+                    }"
+                );
+            }
+            else
+            {
+                MessageBox.Show(
+                    "Enter A race before starting the cheat.",
+                    "Internal Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+            }
+        }
+
         private void UI_Slider_AccuracyVariance(object sender, EventArgs e)
         {
             accuracyVarianceLabel.Text = "Accuracy Variance: ±" + accuracyVarianceSlider.Value;

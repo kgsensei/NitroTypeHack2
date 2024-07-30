@@ -1,5 +1,4 @@
 ﻿using Microsoft.Web.WebView2.WinForms;
-using System.Numerics;
 
 namespace NitroType3
 {
@@ -13,10 +12,12 @@ namespace NitroType3
             int TypingRate = CalculateVariancy(Config.TypingRate, Config.TypingRateVariancy, Min: 10);
             int Accuracy = CalculateVariancy(Config.Accuracy, Config.AccuracyVariancy, Max: 100);
 
+            if (Config.GodMode) Accuracy = 100;
+
             Logger.Log("Calculated Race Specific Typing Rate:" + TypingRate.ToString());
             Logger.Log("Calculated Race Specific Accuracy:" + Accuracy.ToString());
 
-            if (Config.UseNitros) {
+            if (Config.UseNitros || Config.GodMode) {
                 string[] Words = Text.Split('\u00A0');
 
                 Words = ReplaceLongest(Words, "ʜ");
@@ -38,23 +39,29 @@ namespace NitroType3
             for (int i = 0; i < LettersLength; i++)
             {
                 char Letter = Letters[i];
+                string Args;
 
                 if (Letter == 'ʜ')
                 {
-                    string Args = @"{""type"": ""char"", ""windowsVirtualKeyCode"": 13, ""unmodifiedText"": ""\r"", ""text"": ""\r""}";
-                    _ = await webView.CoreWebView2.CallDevToolsProtocolMethodAsync("Input.dispatchKeyEvent", Args);
-
+                    //Args = @"{""type"": ""char"", ""windowsVirtualKeyCode"": 13, ""unmodifiedText"": ""\r"", ""text"": ""\r"", ""code"": ""Enter""}";
+                    Args = @"{ ""type"": ""char"", ""windowsVirtualKeyCode"": 13 }";
                     i++;
+                }
+                else if (Letter == 32)
+                {
+                    Args = @"{ ""type"": ""char"", ""keyIdentifier"": ""U+0020"", ""text"": "" "", ""code"": ""Space"", ""key"": "" "" }";
                 }
                 else
                 {
-                    string Args = @"{""type"": ""char"", ""text"": """ + GetEscapeSequence(Letter) + @"""}";
-                    _ = await webView.CoreWebView2.CallDevToolsProtocolMethodAsync("Input.dispatchKeyEvent", Args);
+                    Args = @"{ ""type"": ""char"", ""text"": """ + GetEscapeSequence(Letter) + @""" }";
                 }
+
+                Logger.Log(Args);
+                _ = await webView.CoreWebView2.CallDevToolsProtocolMethodAsync("Input.dispatchKeyEvent", Args);
 
                 if (MissIndex == MaxIndex)
                 {
-                    string Args = @"{""type"": ""char"", ""text"": """ + InvalidCharacters.Sample() + @"""}";
+                    Args = @"{""type"": ""char"", ""text"": """ + InvalidCharacters.Sample() + @"""}";
                     _ = await webView.CoreWebView2.CallDevToolsProtocolMethodAsync("Input.dispatchKeyEvent", Args);
                     MissIndex = 0;
                 }

@@ -265,6 +265,7 @@ namespace NitroType3
             startButton.TabIndex = 0;
             startButton.Text = "Start Cheat";
             startButton.UseVisualStyleBackColor = false;
+            startButton.Click += UI_Click_Start;
             // 
             // Form1
             // 
