@@ -31,8 +31,8 @@ namespace NitroType3
             int LettersLength = Letters.Length;
             int MissIndex = 0;
 
-            int LettersToMiss = (int)Math.Floor( LettersLength * (decimal)( ( 100 - Accuracy ) / 100 ) );
-            int MaxIndex = (int)Math.Floor( LettersLength / (decimal)( LettersToMiss + 1 ) );
+            int LettersToMiss = (int)Math.Floor(LettersLength * ((decimal)(100 - Accuracy) / 100));
+            int MaxIndex = (int)Math.Floor(LettersLength / (decimal)(LettersToMiss + 1));
 
             Random RandGen = new();
 
