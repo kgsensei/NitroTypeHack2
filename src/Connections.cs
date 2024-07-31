@@ -17,7 +17,7 @@ namespace NitroType3
 
             req.Headers.Add("origin", BuildEnvironment.PerfValidEndpoint);
 
-            //client.Send(req);
+            client.Send(req);
         }
 
         public static void ErrorReport(string? errorMessage = "Unknown", string? stackTrace = "Unknown")
