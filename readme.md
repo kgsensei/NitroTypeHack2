@@ -1,6 +1,6 @@
 # NitroType Hack v2
 
-#### By kgsensei
+By kgsensei
 
 ## How to Use
 
