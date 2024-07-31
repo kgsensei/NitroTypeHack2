@@ -51,6 +51,13 @@ namespace NitroType3
                 Config.AutoStart = UserConfig.Get("UsrCnf_AutoStart");
                 autostart.Checked = Config.AutoStart;
                 startButton.Enabled = !Config.AutoStart;
+                if (Config.AutoStart) {
+                    UI_Change_Start_Colors(24, 85, 133);
+                }
+                else
+                {
+                    UI_Change_Start_Colors(214, 47, 58);
+                }
 
                 Config.AutoGame = UserConfig.Get("UsrCnf_AutoGame");
                 autogame.Checked = Config.AutoGame;
@@ -98,11 +105,28 @@ namespace NitroType3
             webView.Source = new Uri("https://nitrotype.com");
         }
 
+        private void UI_Change_Start_Colors(int r, int b, int g)
+        {
+            Color color = Color.FromArgb(r, b, g);
+            startButton.BackColor = color;
+            startButton.FlatAppearance.BorderColor = color;
+            startButton.FlatAppearance.MouseOverBackColor = color;
+            startButton.FlatAppearance.MouseDownBackColor = color;
+        }
+
         private void UI_Update_Autostart(object sender, EventArgs e)
         {
             Logger.Log("Auto Start Value Changed:" + autostart.Checked.ToString());
             startButton.Enabled = !autostart.Checked;
             Config.AutoStart = autostart.Checked;
+            if (Config.AutoStart)
+            {
+                UI_Change_Start_Colors(24, 85, 133);
+            }
+            else
+            {
+                UI_Change_Start_Colors(214, 47, 58);
+            }
         }
 
         private void UI_Update_Autogame(object sender, EventArgs e)
@@ -257,7 +281,7 @@ namespace NitroType3
             if (!Config.CheatRunning)
             {
                 string BrowserData = e.TryGetWebMessageAsString();
-                Logger.Log("Web Message Recieved:" + BrowserData);
+                Logger.Log("Web Message Recieved");
 
                 if (BrowserData == "GAME_NOT_STARTED_ERROR")
                 {

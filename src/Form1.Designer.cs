@@ -94,7 +94,8 @@
             // discord
             // 
             discord.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            discord.BackColor = Color.FromArgb(46, 49, 65);
+            discord.BackColor = Color.FromArgb(214, 47, 58);
+            discord.Cursor = Cursors.Hand;
             discord.FlatAppearance.BorderColor = Color.FromArgb(214, 47, 58);
             discord.FlatAppearance.MouseDownBackColor = Color.FromArgb(214, 47, 58);
             discord.FlatAppearance.MouseOverBackColor = Color.FromArgb(214, 47, 58);
@@ -112,6 +113,7 @@
             // 
             // godmode
             // 
+            godmode.Cursor = Cursors.Hand;
             godmode.FlatAppearance.BorderColor = Color.FromArgb(214, 47, 58);
             godmode.FlatAppearance.CheckedBackColor = Color.FromArgb(214, 47, 58);
             godmode.FlatAppearance.MouseDownBackColor = Color.FromArgb(214, 47, 58);
@@ -127,6 +129,7 @@
             // 
             // usenitros
             // 
+            usenitros.Cursor = Cursors.Hand;
             usenitros.FlatAppearance.BorderColor = Color.FromArgb(214, 47, 58);
             usenitros.FlatAppearance.CheckedBackColor = Color.FromArgb(214, 47, 58);
             usenitros.FlatAppearance.MouseDownBackColor = Color.FromArgb(214, 47, 58);
@@ -142,6 +145,7 @@
             // 
             // autogame
             // 
+            autogame.Cursor = Cursors.Hand;
             autogame.FlatAppearance.BorderColor = Color.FromArgb(214, 47, 58);
             autogame.FlatAppearance.CheckedBackColor = Color.FromArgb(214, 47, 58);
             autogame.FlatAppearance.MouseDownBackColor = Color.FromArgb(214, 47, 58);
@@ -159,6 +163,7 @@
             // 
             autostart.Checked = true;
             autostart.CheckState = CheckState.Checked;
+            autostart.Cursor = Cursors.Hand;
             autostart.FlatAppearance.BorderColor = Color.FromArgb(214, 47, 58);
             autostart.FlatAppearance.CheckedBackColor = Color.FromArgb(214, 47, 58);
             autostart.FlatAppearance.MouseDownBackColor = Color.FromArgb(214, 47, 58);
@@ -273,11 +278,12 @@
             // 
             // startButton
             // 
-            startButton.BackColor = Color.FromArgb(46, 49, 65);
+            startButton.BackColor = Color.FromArgb(24, 85, 133);
+            startButton.Cursor = Cursors.Hand;
             startButton.Enabled = false;
-            startButton.FlatAppearance.BorderColor = Color.FromArgb(214, 47, 58);
-            startButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(214, 47, 58);
-            startButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(214, 47, 58);
+            startButton.FlatAppearance.BorderColor = Color.FromArgb(24, 85, 133);
+            startButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(24, 85, 133);
+            startButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(24, 85, 133);
             startButton.FlatStyle = FlatStyle.Flat;
             startButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             startButton.ForeColor = Color.White;
