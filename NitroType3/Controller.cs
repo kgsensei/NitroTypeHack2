@@ -17,7 +17,7 @@ namespace NitroType3
             Logger.Log("Calculated Race Specific Typing Rate:" + TypingRate.ToString());
             Logger.Log("Calculated Race Specific Accuracy:" + Accuracy.ToString());
 
-            if (Config.UseNitros || Config.GodMode) {
+            if (Config.UseNitros && !Config.GodMode) {
                 string[] Words = Text.Split('\u00A0');
 
                 Words = ReplaceLongest(Words, "ʜ");
@@ -43,8 +43,9 @@ namespace NitroType3
 
                 if (Letter == 'ʜ')
                 {
-                    //Args = @"{""type"": ""char"", ""windowsVirtualKeyCode"": 13, ""unmodifiedText"": ""\r"", ""text"": ""\r"", ""code"": ""Enter""}";
-                    Args = @"{ ""type"": ""char"", ""windowsVirtualKeyCode"": 13 }";
+                    Args = @"{""type"": ""rawKeyDown"", ""windowsVirtualKeyCode"": 13, ""unmodifiedText"": ""\r"", ""text"": ""\r""}";
+                    _ = await webView.CoreWebView2.CallDevToolsProtocolMethodAsync("Input.dispatchKeyEvent", Args);
+                    Args = @"{""type"": ""keyUp"", ""windowsVirtualKeyCode"": 13, ""unmodifiedText"": ""\r"", ""text"": ""\r""}";
                     i++;
                 }
                 else if (Letter == 32)
@@ -56,7 +57,6 @@ namespace NitroType3
                     Args = @"{ ""type"": ""char"", ""text"": """ + GetEscapeSequence(Letter) + @""" }";
                 }
 
-                Logger.Log(Args);
                 _ = await webView.CoreWebView2.CallDevToolsProtocolMethodAsync("Input.dispatchKeyEvent", Args);
 
                 if (MissIndex == MaxIndex)
