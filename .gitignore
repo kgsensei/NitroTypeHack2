@@ -6,3 +6,4 @@ InnoCompileScript.iss
 /src/obj
 /src/bin
 src/BuildEnvironment.cs
+src/NitroType3.csproj.user
