@@ -1,5 +1,4 @@
 using Microsoft.Web.WebView2.Core;
-using System.Collections.Generic;
 
 namespace NitroType3
 {
