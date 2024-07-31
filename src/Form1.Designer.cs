@@ -70,7 +70,7 @@
             // 
             // controls
             // 
-            controls.BackColor = Color.DimGray;
+            controls.BackColor = Color.FromArgb(46, 49, 65);
             controls.Controls.Add(discord);
             controls.Controls.Add(godmode);
             controls.Controls.Add(usenitros);
@@ -94,7 +94,10 @@
             // discord
             // 
             discord.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            discord.BackColor = Color.DimGray;
+            discord.BackColor = Color.FromArgb(46, 49, 65);
+            discord.FlatAppearance.BorderColor = Color.FromArgb(214, 47, 58);
+            discord.FlatAppearance.MouseDownBackColor = Color.FromArgb(214, 47, 58);
+            discord.FlatAppearance.MouseOverBackColor = Color.FromArgb(214, 47, 58);
             discord.FlatStyle = FlatStyle.Flat;
             discord.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             discord.ForeColor = Color.White;
@@ -109,6 +112,10 @@
             // 
             // godmode
             // 
+            godmode.FlatAppearance.BorderColor = Color.FromArgb(214, 47, 58);
+            godmode.FlatAppearance.CheckedBackColor = Color.FromArgb(214, 47, 58);
+            godmode.FlatAppearance.MouseDownBackColor = Color.FromArgb(214, 47, 58);
+            godmode.FlatAppearance.MouseOverBackColor = Color.FromArgb(214, 47, 58);
             godmode.Font = new Font("Segoe UI", 10F);
             godmode.ForeColor = Color.White;
             godmode.Location = new Point(5, 327);
@@ -120,6 +127,10 @@
             // 
             // usenitros
             // 
+            usenitros.FlatAppearance.BorderColor = Color.FromArgb(214, 47, 58);
+            usenitros.FlatAppearance.CheckedBackColor = Color.FromArgb(214, 47, 58);
+            usenitros.FlatAppearance.MouseDownBackColor = Color.FromArgb(214, 47, 58);
+            usenitros.FlatAppearance.MouseOverBackColor = Color.FromArgb(214, 47, 58);
             usenitros.Font = new Font("Segoe UI", 10F);
             usenitros.ForeColor = Color.White;
             usenitros.Location = new Point(5, 297);
@@ -131,6 +142,10 @@
             // 
             // autogame
             // 
+            autogame.FlatAppearance.BorderColor = Color.FromArgb(214, 47, 58);
+            autogame.FlatAppearance.CheckedBackColor = Color.FromArgb(214, 47, 58);
+            autogame.FlatAppearance.MouseDownBackColor = Color.FromArgb(214, 47, 58);
+            autogame.FlatAppearance.MouseOverBackColor = Color.FromArgb(214, 47, 58);
             autogame.Font = new Font("Segoe UI", 10F);
             autogame.ForeColor = Color.White;
             autogame.Location = new Point(5, 267);
@@ -144,6 +159,10 @@
             // 
             autostart.Checked = true;
             autostart.CheckState = CheckState.Checked;
+            autostart.FlatAppearance.BorderColor = Color.FromArgb(214, 47, 58);
+            autostart.FlatAppearance.CheckedBackColor = Color.FromArgb(214, 47, 58);
+            autostart.FlatAppearance.MouseDownBackColor = Color.FromArgb(214, 47, 58);
+            autostart.FlatAppearance.MouseOverBackColor = Color.FromArgb(214, 47, 58);
             autostart.Font = new Font("Segoe UI", 10F);
             autostart.ForeColor = Color.White;
             autostart.Location = new Point(5, 237);
@@ -155,7 +174,8 @@
             // 
             // accuracyVarianceSlider
             // 
-            accuracyVarianceSlider.BackColor = Color.DimGray;
+            accuracyVarianceSlider.BackColor = Color.FromArgb(46, 49, 65);
+            accuracyVarianceSlider.Cursor = Cursors.SizeWE;
             accuracyVarianceSlider.Location = new Point(0, 198);
             accuracyVarianceSlider.Margin = new Padding(0);
             accuracyVarianceSlider.Maximum = 15;
@@ -178,7 +198,8 @@
             // 
             // accuracySlider
             // 
-            accuracySlider.BackColor = Color.DimGray;
+            accuracySlider.BackColor = Color.FromArgb(46, 49, 65);
+            accuracySlider.Cursor = Cursors.SizeWE;
             accuracySlider.Location = new Point(0, 153);
             accuracySlider.Margin = new Padding(0);
             accuracySlider.Maximum = 100;
@@ -202,7 +223,8 @@
             // 
             // typingRateVarianceSlider
             // 
-            typingRateVarianceSlider.BackColor = Color.DimGray;
+            typingRateVarianceSlider.BackColor = Color.FromArgb(46, 49, 65);
+            typingRateVarianceSlider.Cursor = Cursors.SizeWE;
             typingRateVarianceSlider.Location = new Point(0, 108);
             typingRateVarianceSlider.Margin = new Padding(0);
             typingRateVarianceSlider.Maximum = 15;
@@ -225,7 +247,8 @@
             // 
             // typingRateSlider
             // 
-            typingRateSlider.BackColor = Color.DimGray;
+            typingRateSlider.BackColor = Color.FromArgb(46, 49, 65);
+            typingRateSlider.Cursor = Cursors.SizeWE;
             typingRateSlider.Location = new Point(0, 63);
             typingRateSlider.Margin = new Padding(0);
             typingRateSlider.Maximum = 350;
@@ -250,8 +273,11 @@
             // 
             // startButton
             // 
-            startButton.BackColor = Color.DimGray;
+            startButton.BackColor = Color.FromArgb(46, 49, 65);
             startButton.Enabled = false;
+            startButton.FlatAppearance.BorderColor = Color.FromArgb(214, 47, 58);
+            startButton.FlatAppearance.MouseDownBackColor = Color.FromArgb(214, 47, 58);
+            startButton.FlatAppearance.MouseOverBackColor = Color.FromArgb(214, 47, 58);
             startButton.FlatStyle = FlatStyle.Flat;
             startButton.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             startButton.ForeColor = Color.White;

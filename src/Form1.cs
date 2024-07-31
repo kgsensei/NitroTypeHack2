@@ -235,20 +235,20 @@ namespace NitroType3
                 setTimeout(() => {" + funcName + @"();}, 2000);
 
                 setInterval(() => {
-                    const m = ""Validated! Play on."";
+                    const m = ""Validated!Playon."";
                     const x = document.querySelector(""h1.tsxxl.mbs"");
-                    const f = Array.from(document.querySelectorAll(""div.tc-i"")).find(l => l.textContent === m);
+                    const f = Array.from(document.querySelectorAll(""div.tc-i"")).find(l => l.textContent.replace(/ /g, """") === m);
                     if(x) {
                         if(x.textContent === ""Communications Error"") {
                             window.location.reload();
                         }
                     }
                     if(f) {
-                        if(f.textContent === m) {
+                        if(f.textContent.replace(/ /g, """") === m) {
                             window.location.reload();
                         }
                     }
-                }, 250);"
+                }, 500);"
             );
         }
 
@@ -289,7 +289,7 @@ namespace NitroType3
 
             webView.ExecuteScriptAsync(
                 @"setInterval(() => {
-                    const tmpx = document.getElementsByClassName('ad');
+                    const tmpx = document.querySelectorAll('.profile-ad, .ad, .goldTeaser');
                     for (let i = 0; i < tmpx.length; i++) {
                         tmpx[i].remove();
                     }
