@@ -1,1 +1,0 @@
-https://api.github.com/repos/kgsensei/NitroTypeHack2/releases/latest
