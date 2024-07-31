@@ -1,0 +1,33 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="NitroType3.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="UsrCnf_AutoStart" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="UsrCnf_AutoGame" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UsrCnf_UseNitros" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UsrCnf_Accuracy" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="UsrCnf_AccuracyV" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="UsrCnf_TypingRate_Real" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">260</Value>
+    </Setting>
+    <Setting Name="UsrCnf_TypingRateV" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="UsrCnf_OpenAmount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="UsrCnf_TypingRate_Visual" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

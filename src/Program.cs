@@ -27,6 +27,7 @@ namespace NitroType3
 
         private static void LogApplicationProcessExit(object? sender, EventArgs e)
         {
+            UserConfig.Save();
             Logger.Log("========== SAFE EXITING ==========");
         }
 

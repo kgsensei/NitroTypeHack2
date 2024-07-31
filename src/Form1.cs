@@ -1,4 +1,5 @@
 using Microsoft.Web.WebView2.Core;
+using System.Collections.Generic;
 
 namespace NitroType3
 {
@@ -23,9 +24,44 @@ namespace NitroType3
             }
 
             InitializeComponent();
+            LoadPreviousUser();
             SetupWebview();
 
             Text = "NitroType Cheat v" + Updates.VersionCode;
+        }
+
+        private void LoadPreviousUser()
+        {
+            int Opens = UserConfig.Get("UsrCnf_OpenAmount");
+            Logger.Log("Open Number:" + Opens);
+            
+            if (Opens != 0)
+            {
+                Config.TypingRate = UserConfig.Get("UsrCnf_TypingRate_Real");
+                typingRateSlider.Value = UserConfig.Get("UsrCnf_TypingRate_Visual");
+
+                Config.TypingRateVariancy = UserConfig.Get("UsrCnf_TypingRateV");
+                typingRateVarianceSlider.Value = Config.TypingRateVariancy;
+
+                Config.Accuracy = UserConfig.Get("UsrCnf_Accuracy");
+                accuracySlider.Value = Config.Accuracy;
+
+                Config.AccuracyVariancy = UserConfig.Get("UsrCnf_AccuracyV");
+                accuracyVarianceSlider.Value = Config.AccuracyVariancy;
+
+                Config.AutoStart = UserConfig.Get("UsrCnf_AutoStart");
+                autostart.Checked = Config.AutoStart;
+                startButton.Enabled = !Config.AutoStart;
+
+                Config.AutoGame = UserConfig.Get("UsrCnf_AutoGame");
+                autogame.Checked = Config.AutoGame;
+
+                Config.UseNitros = UserConfig.Get("UsrCnf_UseNitros");
+                usenitros.Checked = Config.UseNitros;
+            }
+
+            Opens++;
+            UserConfig.Set("UsrCnf_OpenAmount", Opens);
         }
 
         private async void SetupWebview()
@@ -173,6 +209,7 @@ namespace NitroType3
             Config.TypingRate = RealRate;
             int WPMCalculation = (int)(60 / ((double)RealRate / 1000) / 5);
             typingRateSliderLabel.Text = "Typing Rate: ~" + WPMCalculation;
+            UserConfig.Set("UsrCnf_TypingRate_Visual", typingRateSlider.Value);
         }
 
         private void InjectAutoStart()
