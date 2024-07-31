@@ -1,10 +1,8 @@
 .vs
 Output
-NitroTypeHack2/bin/*
-NitroTypeHack2/obj/*
-packages/*
 *.iss
 .vs/
 InnoCompileScript.iss
-/NitroType3/bin
-/NitroType3/obj
+/src/obj
+/src/bin
+src/BuildEnvironment.cs
