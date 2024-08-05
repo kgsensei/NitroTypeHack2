@@ -16,7 +16,8 @@ namespace NitroType3
                 MessageBox.Show(
                     "You don't have the Microsoft WebView2 Component installed.\nThis is a requirement to run the cheat.\nPlease install it then run the cheat again.",
                     "Fatal Error",
-                    MessageBoxButtons.OK
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
                 );
                 System.Diagnostics.Process.Start("WebView2Setup.exe");
                 Environment.Exit(0); // Don't call Close() because window is not initialized yet
@@ -209,7 +210,7 @@ namespace NitroType3
 
         private void UI_Slider_AccuracyVariance(object sender, EventArgs e)
         {
-            accuracyVarianceLabel.Text = "Accuracy Variance: ±" + accuracyVarianceSlider.Value;
+            accuracyVarianceLabel.Text = "Accuracy Variance: ï¿½" + accuracyVarianceSlider.Value;
             Config.AccuracyVariancy = accuracyVarianceSlider.Value;
         }
 
@@ -221,7 +222,7 @@ namespace NitroType3
 
         private void UI_Slider_TypingRateVariance(object sender, EventArgs e)
         {
-            typingRateVarianceLabel.Text = "Typing Rate Variance: ±" + typingRateVarianceSlider.Value;
+            typingRateVarianceLabel.Text = "Typing Rate Variance: ï¿½" + typingRateVarianceSlider.Value;
             Config.TypingRateVariancy = typingRateVarianceSlider.Value;
         }
 
