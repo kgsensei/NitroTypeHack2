@@ -12,6 +12,13 @@
             {
                 RequestUri = BuildEnvironment.UpdateCheckerEndpoint,
                 Method = HttpMethod.Get,
+                Headers =
+                {
+                    CacheControl = new System.Net.Http.Headers.CacheControlHeaderValue
+                    {
+                        NoCache = true
+                    }
+                }
             };
 
             req.Headers.UserAgent.Add(
