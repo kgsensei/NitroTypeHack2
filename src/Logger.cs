@@ -27,13 +27,17 @@
 
                 if (!LogDirInfo.Exists) LogDirInfo.Create();
 
-                using FileStream fileStream = new(LogFilePath, FileMode.Append);
+                try
                 {
-                    using StreamWriter Log = new(fileStream);
+                    using FileStream fileStream = new(LogFilePath, FileMode.Append);
                     {
-                        Log.WriteLine("[" + level + "] " + message);
+                        using StreamWriter Log = new(fileStream);
+                        {
+                            Log.WriteLine("[" + level + "] " + message);
+                        }
                     }
                 }
+                catch (Exception) { }
             }
         }
     }

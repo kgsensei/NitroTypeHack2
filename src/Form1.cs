@@ -19,7 +19,6 @@ namespace NitroType3
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
                 );
-                System.Diagnostics.Process.Start("WebView2Setup.exe");
                 Environment.Exit(0); // Don't call Close() because window is not initialized yet
             }
 
@@ -37,34 +36,42 @@ namespace NitroType3
             
             if (Opens != 0)
             {
-                Config.TypingRate = UserConfig.Get("UsrCnf_TypingRate_Real");
-                typingRateSlider.Value = UserConfig.Get("UsrCnf_TypingRate_Visual");
-
-                Config.TypingRateVariancy = UserConfig.Get("UsrCnf_TypingRateV");
-                typingRateVarianceSlider.Value = Config.TypingRateVariancy;
-
-                Config.Accuracy = UserConfig.Get("UsrCnf_Accuracy");
-                accuracySlider.Value = Config.Accuracy;
-
-                Config.AccuracyVariancy = UserConfig.Get("UsrCnf_AccuracyV");
-                accuracyVarianceSlider.Value = Config.AccuracyVariancy;
-
-                Config.AutoStart = UserConfig.Get("UsrCnf_AutoStart");
-                autostart.Checked = Config.AutoStart;
-                startButton.Enabled = !Config.AutoStart;
-                if (Config.AutoStart) {
-                    UI_Change_Start_Colors(24, 85, 133);
-                }
-                else
+                try
                 {
-                    UI_Change_Start_Colors(214, 47, 58);
+                    Config.TypingRate = UserConfig.Get("UsrCnf_TypingRate_Real");
+                    typingRateSlider.Value = UserConfig.Get("UsrCnf_TypingRate_Visual");
+
+                    Config.TypingRateVariancy = UserConfig.Get("UsrCnf_TypingRateV");
+                    typingRateVarianceSlider.Value = Config.TypingRateVariancy;
+
+                    Config.Accuracy = UserConfig.Get("UsrCnf_Accuracy");
+                    accuracySlider.Value = Config.Accuracy;
+
+                    Config.AccuracyVariancy = UserConfig.Get("UsrCnf_AccuracyV");
+                    accuracyVarianceSlider.Value = Config.AccuracyVariancy;
+
+                    Config.AutoStart = UserConfig.Get("UsrCnf_AutoStart");
+                    autostart.Checked = Config.AutoStart;
+                    startButton.Enabled = !Config.AutoStart;
+                    if (Config.AutoStart)
+                    {
+                        UI_Change_Start_Colors(24, 85, 133);
+                    }
+                    else
+                    {
+                        UI_Change_Start_Colors(214, 47, 58);
+                    }
+
+                    Config.AutoGame = UserConfig.Get("UsrCnf_AutoGame");
+                    autogame.Checked = Config.AutoGame;
+
+                    Config.UseNitros = UserConfig.Get("UsrCnf_UseNitros");
+                    usenitros.Checked = Config.UseNitros;
                 }
-
-                Config.AutoGame = UserConfig.Get("UsrCnf_AutoGame");
-                autogame.Checked = Config.AutoGame;
-
-                Config.UseNitros = UserConfig.Get("UsrCnf_UseNitros");
-                usenitros.Checked = Config.UseNitros;
+                catch (Exception)
+                {
+                    UserConfig.Reset();
+                }
             }
 
             Opens++;

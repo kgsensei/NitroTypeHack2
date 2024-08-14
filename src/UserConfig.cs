@@ -26,7 +26,19 @@
             Properties.Settings.Default["UsrCnf_TypingRate_Real"] = Config.TypingRate;
             Properties.Settings.Default["UsrCnf_TypingRateV"] = Config.TypingRateVariancy;
 
-            Properties.Settings.Default.Save();
+            try
+            {
+                Properties.Settings.Default.Save();
+            }
+            catch (Exception)
+            {
+                Reset();
+            }
+        }
+
+        public static void Reset()
+        {
+            Properties.Settings.Default.Reset();
         }
     }
 }

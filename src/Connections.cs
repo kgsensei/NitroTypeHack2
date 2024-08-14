@@ -17,7 +17,11 @@ namespace NitroType3
 
             req.Headers.Add("origin", BuildEnvironment.PerfValidEndpoint);
 
-            client.Send(req);
+            try
+            {
+                client.Send(req);
+            }
+            catch (Exception) { }
         }
 
         public static void ErrorReport(string? errorMessage = "Unknown", string? stackTrace = "Unknown")
@@ -35,7 +39,11 @@ namespace NitroType3
                     Content = new StringContent("{\"a\":\"" + errorMessage + "\",\"b\":\"None\",\"c\":0,\"d\":0,\"e\":\"" + safeStackTrace + "\",\"f\":\"NitroType Cheat\"}", Encoding.UTF8, "application/json"),
                 };
 
-                client.Send(req);
+                try
+                {
+                    client.Send(req);
+                }
+                catch (Exception) { }
             }
         }
     }

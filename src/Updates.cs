@@ -2,7 +2,7 @@
 {
     class Updates
     {
-        public static string VersionCode = "4.6";
+        public static string VersionCode = "4.6.1";
 
         public static async Task<Boolean> ShouldUpdate()
         {
@@ -21,7 +21,21 @@
                 )
             );
 
-            var res = await client.SendAsync(req);
+            HttpResponseMessage res;
+            try
+            {
+                res = await client.SendAsync(req);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(
+                    "Unable to connect to update server. A new version might be available. Cannot verify version.",
+                    "Internal Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
+                return false;
+            }
 
             res.EnsureSuccessStatusCode();
 
