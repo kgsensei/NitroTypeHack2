@@ -183,7 +183,7 @@ namespace NitroType3
         private void UI_Click_Discord(object sender, EventArgs e)
         {
             Logger.Log("Discord Button Clicked");
-            System.Diagnostics.Process.Start("explorer.exe", BuildEnvironment.DiscordLink);
+            Connections.OpenLink(BuildEnvironment.DiscordLink);
         }
 
         private async void UI_Click_Start(object sender, EventArgs e)

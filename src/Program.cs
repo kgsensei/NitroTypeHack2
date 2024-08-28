@@ -81,7 +81,7 @@ namespace NitroType3
                 if (WantsUpdate == DialogResult.Yes)
                 {
                     Logger.Log("Opening Update Link");
-                    System.Diagnostics.Process.Start("explorer.exe", "https://github.com/kgsensei/NitroTypeHack2/releases/latest");
+                    Connections.OpenLink("https://github.com/kgsensei/NitroTypeHack2/releases/latest");
                 }
             }
         }

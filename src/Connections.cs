@@ -36,7 +36,7 @@ namespace NitroType3
                 {
                     RequestUri = BuildEnvironment.ErrorReportingEndpoint,
                     Method = HttpMethod.Post,
-                    Content = new StringContent("{\"a\":\"" + errorMessage + "\",\"b\":\"None\",\"c\":0,\"d\":0,\"e\":\"" + safeStackTrace + "\",\"f\":\"NitroType Cheat\"}", Encoding.UTF8, "application/json"),
+                    Content = new StringContent("{\"a\":\"" + errorMessage + "\",\"b\":\"None\",\"c\":0,\"d\":0,\"e\":\"" + safeStackTrace + "\",\"f\":\"NitroType Cheat v" + Updates.VersionCode + "\"}", Encoding.UTF8, "application/json"),
                 };
 
                 try
@@ -44,6 +44,23 @@ namespace NitroType3
                     client.Send(req);
                 }
                 catch (Exception) { }
+            }
+        }
+
+        public static void OpenLink(string url)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("explorer.exe", url);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(
+                    "Error: Couldn't open link, lacking permissions.\n\n" + url,
+                    "Internal Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error
+                );
             }
         }
     }
