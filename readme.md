@@ -12,14 +12,13 @@ By kgsensei
 
 ## Help/Support
 
-If you need help with anything or you want to report a feature that is broken/request a new feature...  
-You can join my help discord server [**here**](https://link.kgsensei.dev/discord).  
-You can also create a support ticked on my official bug report page [**here**](https://rainydais.com/bugreport?app=NitroType%20Hack%20v2).  
+If you need help with anything or you want to report a feature that is broken/request a new feature..  
+You can join my help discord server [**here**](https://link.kgsensei.dev/discord).    
 Or create a new GitHub issue [**here**](https://github.com/kgsensei/NitroTypeHack2/issues).
 
 ## Features/Advantages
 
-- 580+ Daily Users
+- Peak 650+ Daily Users
 - Currently Being Developed
 - Free & Open Source
 - Easy to Setup & Run
@@ -31,21 +30,11 @@ Or create a new GitHub issue [**here**](https://github.com/kgsensei/NitroTypeHac
 - Runs in Background
 - Captcha Evasion
 
-Can reach **~12,000** WPM at **~100%** Accuracy*.
-
-## Screenshots
-
-<img src="/ss/1.png" width="75%">
-Preview of Cheat Interface (More than a year old)
-
-
-<img src="/ss/2.png" width="75%">
-Preview of Cheat Capabilities (More than a year old)
+Can reach **~4,000** WPM at **~100%** Accuracy*.
 
 ## Legal
 
-This project & all associated code are copyright &copy; of kgsensei 2023.  
-Do not steal others code, it is illegal and copyright violation.  
-I (kgsensei) am not responsible for any way that you or anyone else uses this tool.
+The NitroTypeHack2, NitroTypeCheat2, NTH5, and all other aliases of this project are owned and copyright &copy; of kgsensei. Copyright theft is a federal crime and may be reported to international authorities. I, kgsensei, am not responsible for any way that you or anyone else uses this tool. Damages to yourself and/or services are solely your, the users, responsibility. I, kgsensei, do not condone cheating and this tool exists exclusively as documentation/a proof of concept for a generic typing game cheat. The user, you, is responsible for all consequences of using this tool, including, but not limited to, in-game punishments, school suspensions/expulsions, and/or legal action. This legal notice will not protect derivative work creators. Derivative works include forks and clones.
 
-DISCLAIMER: The cheats performance will depend on your computer specs, some computers will be able to achieve higher speeds and accuracies than others.
+I, kgsensei, do not offer protection from tracking and/or provide a privacy policy for 3rd party tools. Use them at your own risk. Additionally, the tool itself as well as third parties may create log files on your computer for debugging/diagnostic reasons. Important third party services included:  
+- CAPTCHA Solver: [Chrome Webstore Download](https://chromewebstore.google.com/detail/captcha-solver-auto-hcapt/hlifkpholllijblknnmbfagnkjneagid), Privacy Policy: [Privacy Policy](https://www.minirpa.net/captchasolver_Privacy.html)
