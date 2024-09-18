@@ -12,15 +12,12 @@ By kgsensei
 
 ## Help/Support
 
-If you need help with anything or you want to report a feature that is broken/request a new feature..  
-You can join my help discord server [**here**](https://link.kgsensei.dev/discord).    
-Or create a new GitHub issue [**here**](https://github.com/kgsensei/NitroTypeHack2/issues).
+This project has been discontinued. I will continue to merge pull requests however I will not be actively developing this project anymore. Thanks for your continued support.
 
 ## Features/Advantages
 
 - Peak 650+ Daily Users
-- Currently Being Developed
-- Free & Open Source
+- Source Available
 - Easy to Setup & Run
 - Runs Like a Desktop App
 - Built in Ad Blocker
@@ -28,7 +25,6 @@ Or create a new GitHub issue [**here**](https://github.com/kgsensei/NitroTypeHac
 - God Mode Option
 - Auto New Game Feature
 - Runs in Background
-- Captcha Evasion
 
 Can reach **~4,000** WPM at **~100%** Accuracy*.
 
