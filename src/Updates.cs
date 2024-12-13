@@ -32,6 +32,7 @@
             try
             {
                 res = await client.SendAsync(req);
+                res.EnsureSuccessStatusCode();
             }
             catch (Exception)
             {
@@ -43,8 +44,6 @@
                 );
                 return false;
             }
-
-            res.EnsureSuccessStatusCode();
 
             string LiveVersionCode = await res.Content.ReadAsStringAsync();
             LiveVersionCode = LiveVersionCode
