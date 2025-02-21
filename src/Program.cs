@@ -21,8 +21,21 @@ namespace NitroType3
             ShouldUpdate();
 
             Logger.Log("Initializing Window");
-            ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            try
+            {
+                ApplicationConfiguration.Initialize();
+                Application.Run(new Form1());
+            }
+            catch (System.EntryPointNotFoundException)
+            {
+                MessageBox.Show(
+                    "This program is not supported on your device. (GetThreadDpiHostingBehavior not in DLL USER32.dll)",
+                    "Fatal Error",
+                    MessageBoxButtons.Ok,
+                    MessageBoxIcon.Information
+                );
+                return 0;
+            }
         }
 
         private static void LogApplicationProcessExit(object? sender, EventArgs e)

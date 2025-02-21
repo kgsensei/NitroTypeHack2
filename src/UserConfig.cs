@@ -38,7 +38,19 @@
 
         public static void Reset()
         {
-            Properties.Settings.Default.Reset();
+            try
+            {
+                Properties.Settings.Default.Reset();
+            }
+            catch (System.Configuration.ConfigurationErrorsException)
+            {
+                MessageBox.Show(
+                    "Could not load configuration files. Already being used by another process, are you running multiple versions of this program?",
+                    "Critical Error",
+                    MessageBoxButtons.Ok,
+                    MessageBoxIcon.Information
+                );
+            }
         }
     }
 }
