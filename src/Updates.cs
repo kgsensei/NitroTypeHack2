@@ -1,21 +1,16 @@
-﻿namespace NitroType3
-{
-    class Updates
-    {
-        public static string VersionCode = "4.6.2";
+﻿namespace NitroType3 {
+    class Updates {
+        // Current version code
+        public static string VersionCode = "4.6.3";
 
-        public static async Task<Boolean> ShouldUpdate()
-        {
+        // Checks if there's a new version avaliable
+        public static async Task<Boolean> ShouldUpdate() {
             HttpClient client = new();
-
-            HttpRequestMessage req = new()
-            {
+            HttpRequestMessage req = new() {
                 RequestUri = BuildEnvironment.UpdateCheckerEndpoint,
                 Method = HttpMethod.Get,
-                Headers =
-                {
-                    CacheControl = new System.Net.Http.Headers.CacheControlHeaderValue
-                    {
+                Headers = {
+                    CacheControl = new System.Net.Http.Headers.CacheControlHeaderValue {
                         NoCache = true
                     }
                 }
@@ -29,15 +24,23 @@
             );
 
             HttpResponseMessage res;
-            try
-            {
+            try {
                 res = await client.SendAsync(req);
+                if (res.StatusCode != System.Net.HttpStatusCode.OK) {
+                    MessageBox.Show(
+                        "Unable to connect to update server (" + res.StatusCode +
+                        "). A new version might be available. Cannot verify version.",
+                        "Internal Error",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    return false;
+                }
                 res.EnsureSuccessStatusCode();
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
                 MessageBox.Show(
-                    "Unable to connect to update server. A new version might be available. Cannot verify version.",
+                    "Unable to connect to update server. A new version " +
+                    "might be available. Cannot verify version.",
                     "Internal Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Error
@@ -46,9 +49,7 @@
             }
 
             string LiveVersionCode = await res.Content.ReadAsStringAsync();
-            LiveVersionCode = LiveVersionCode
-                .ToLower()
-                .Replace("\n", "");
+            LiveVersionCode = LiveVersionCode.ToLower().Replace("\n", "");
 
             Logger.Log("Live Version Code:" + LiveVersionCode);
             Logger.Log("Current Version Code:" + VersionCode);

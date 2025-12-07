@@ -1,19 +1,22 @@
-﻿namespace NitroType3
-{
-    class UserConfig
-    {
-        public static dynamic Get(string key)
-        {
-            return Properties.Settings.Default[key];
+﻿namespace NitroType3 {
+    class UserConfig {
+        // Gets a configuration option
+        public static dynamic Get(string key) {
+            try {
+                return Properties.Settings.Default[key];
+            } catch (Exception) {
+                Reset();
+                return 0;
+            }
         }
 
-        public static void Set(string key, dynamic value)
-        {
+        // Sets a configuration option
+        public static void Set(string key, dynamic value) {
             Properties.Settings.Default[key] = value;
         }
 
-        public static void Save()
-        {
+        // Save the current user settings
+        public static void Save() {
             Logger.Log("Saving User Configuration");
 
             Properties.Settings.Default["UsrCnf_AutoStart"] = Config.AutoStart;
@@ -26,28 +29,23 @@
             Properties.Settings.Default["UsrCnf_TypingRate_Real"] = Config.TypingRate;
             Properties.Settings.Default["UsrCnf_TypingRateV"] = Config.TypingRateVariancy;
 
-            try
-            {
+            // If it fails to save then just hard reset to prevent problems later on
+            try {
                 Properties.Settings.Default.Save();
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
                 Reset();
             }
         }
 
-        public static void Reset()
-        {
-            try
-            {
+        // Attempts to hard reset user settings, only used in case of failure
+        public static void Reset() {
+            try {
                 Properties.Settings.Default.Reset();
-            }
-            catch (System.Configuration.ConfigurationErrorsException)
-            {
+            } catch (Exception e) {
                 MessageBox.Show(
-                    "Could not load configuration files. Already being used by another process, are you running multiple versions of this program?",
+                    "Could not load configuration files:\n" + e,
                     "Critical Error",
-                    MessageBoxButtons.Ok,
+                    MessageBoxButtons.OK,
                     MessageBoxIcon.Information
                 );
             }

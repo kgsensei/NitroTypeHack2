@@ -1,7 +1,5 @@
-﻿namespace NitroType3
-{
-    class Config
-    {
+﻿namespace NitroType3 {
+    class Config {
         // Booleans
         public static bool AutoStart { get; set; } = true;
         public static bool AutoGame { get; set; } = false;

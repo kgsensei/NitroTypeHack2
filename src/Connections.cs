@@ -1,15 +1,10 @@
 ﻿using System.Text;
 
-namespace NitroType3
-{
-    class Connections
-    {
-        public static void UsageReport()
-        {
+namespace NitroType3 {
+    class Connections {
+        public static void UsageReport() {
             HttpClient client = new();
-
-            HttpRequestMessage req = new()
-            {
+            HttpRequestMessage req = new() {
                 RequestUri = BuildEnvironment.PerformanceEndpoint,
                 Method = HttpMethod.Post,
                 Content = new StringContent("{\"project\":\"NitroTypeHack2\"}", Encoding.UTF8, "application/json"),
@@ -17,44 +12,33 @@ namespace NitroType3
 
             req.Headers.Add("origin", BuildEnvironment.PerfValidEndpoint);
 
-            try
-            {
+            try {
                 client.Send(req);
-            }
-            catch (Exception) { }
+            } catch (Exception) { }
         }
 
-        public static void ErrorReport(string? errorMessage = "Unknown", string? stackTrace = "Unknown")
-        {
+        public static void ErrorReport(string? errorMessage = "Unknown", string? stackTrace = "Unknown") {
             HttpClient client = new();
 
-            if (stackTrace != null)
-            {
+            if (stackTrace != null) {
                 string safeStackTrace = stackTrace.Replace("\r", "").Replace("\n", "").Replace("\"", "\'").Replace("\\", "\\\\");
 
-                HttpRequestMessage req = new()
-                {
+                HttpRequestMessage req = new() {
                     RequestUri = BuildEnvironment.ErrorReportingEndpoint,
                     Method = HttpMethod.Post,
                     Content = new StringContent("{\"a\":\"" + errorMessage + "\",\"b\":\"None\",\"c\":0,\"d\":0,\"e\":\"" + safeStackTrace + "\",\"f\":\"NitroType Cheat v" + Updates.VersionCode + "\"}", Encoding.UTF8, "application/json"),
                 };
 
-                try
-                {
+                try {
                     client.Send(req);
-                }
-                catch (Exception) { }
+                } catch (Exception) { }
             }
         }
 
-        public static void OpenLink(string url)
-        {
-            try
-            {
+        public static void OpenLink(string url) {
+            try {
                 System.Diagnostics.Process.Start("explorer.exe", url);
-            }
-            catch (Exception)
-            {
+            } catch (Exception) {
                 MessageBox.Show(
                     "Error: Couldn't open link, lacking permissions.\n\n" + url,
                     "Internal Error",

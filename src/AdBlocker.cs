@@ -1,12 +1,12 @@
-﻿namespace NitroType3
-{
-    class AdBlocker
-    {
+﻿namespace NitroType3 {
+    class AdBlocker {
         private static string[] BlockedDomains = {
+            "adsafeprotected.com",
             "btloader.com",
             "bugsnag.com",
             "cloudfront.net",
             "cloudflareinsights.com",
+            "cuddlycake.com",
             "doubleclick.net",
             "facebook.net",
             "facebook.com",
@@ -18,16 +18,12 @@
             "vuukle.com",
         };
 
-        public static bool IsBlocked(string Uri)
-        {
-            for (int i = 0; i < BlockedDomains.Length; i++)
-            {
-                if (Uri.Contains(BlockedDomains[i]))
-                {
+        public static bool IsBlocked(string Uri) {
+            for (int i = 0; i < BlockedDomains.Length; i++) {
+                if (Uri.Contains(BlockedDomains[i])) {
                     return true;
                 }
             }
-
             return false;
         }
     }
